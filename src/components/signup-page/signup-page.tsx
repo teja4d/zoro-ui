@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
-import { loginUser, registerUser } from "../../api/auth/auth-api";
+import { loginUser, registerUser } from "../../api/users/user-api";
 import { UserRegisterRequest } from "../../api/swagger-gen/data-contracts";
 import Banner from "../../elements/banner/banner";
 import Button from "../../elements/button/button";
 import InputField from "../../elements/input-fields/input-field";
 import Link from "next/link";
+import { signJWTAndSetCookie } from "@/utils/jwt-auth";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState<string | undefined>();
@@ -17,7 +18,6 @@ const SignUpForm = () => {
   const [error, setError] = useState<string>();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,10 +46,11 @@ const SignUpForm = () => {
     };
     setLoading(true);
     const isSignedUp = await registerUser(signupData);
-  
+
     if (isSignedUp) {
       setLoading(false);
-      router.push(`/user/${username}`);
+      signJWTAndSetCookie(username);
+      redirect(`/user/${username}`);
     } else {
       setError("Something went wrong");
       setShow(true);
