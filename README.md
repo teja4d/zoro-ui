@@ -1,6 +1,6 @@
 # Zoro-UI
 
-Zoro-UI is a Next.js project designed to provide a robust user interface with extensive testing and API integration capabilities. This README outlines the project's structure, dependencies, and how to set up and run the application.
+Zoro-UI is a Next.js project designed for user interface with extensive testing and API integration capabilities. This README outlines the project's structure, dependencies, and how to set up and run the application.
 
 ## Table of Contents
 - [Installation](#installation)
