@@ -21,6 +21,7 @@ jobs:
         run: |
           npm ci
           npm update jest typescript  # Update Jest and TypeScript
+          npm install ts-node --save-dev # Install ts-node
 
       - name: Run unit tests
         run: npm test -- --verbose # Run Jest with verbose output
