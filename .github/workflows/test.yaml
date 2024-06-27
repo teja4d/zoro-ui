@@ -12,21 +12,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "node"
+          node-version: "14" # Specify a Node.js version
 
-      - name: Cache Node modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Clear Jest Cache
+        run: npx jest --clearCache
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm ci
+          npm update jest typescript  # Update Jest and TypeScript
 
       - name: Run unit tests
-        run: npm test
+        run: npm test -- --verbose # Run Jest with verbose output
 
       - name: Cache Cypress binary
         uses: actions/cache@v2
