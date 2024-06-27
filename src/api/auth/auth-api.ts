@@ -1,4 +1,4 @@
-import { UserLoginRequest, ApiErrorResponse, UserRegisterRequest, ApiSuccessResponseIUser, ApiSuccessResponseUserLoginResponse } from '../swagger-gen/data-contracts';
+import { UserLoginRequest, ApiErrorResponse, UserRegisterRequest, ApiSuccessResponseUserLoginResponse, ApiSuccessResponseUserDto } from '../swagger-gen/data-contracts';
 import { User } from '../swagger-gen/User';
 
 const auth = new User({
@@ -30,7 +30,7 @@ export const registerUser = async (registerData: UserRegisterRequest): Promise<b
     }
 };
 
-export const getUserDetails = async (username: string): Promise<ApiSuccessResponseIUser | ApiErrorResponse | null> => {
+export const getUserDetails = async (username: string): Promise<ApiSuccessResponseUserDto | ApiErrorResponse | null> => {
     try {
         const response = await auth.userDetails(username);
         if (response.ok) {

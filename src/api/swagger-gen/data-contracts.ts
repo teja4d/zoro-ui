@@ -41,15 +41,14 @@ export interface UserRegisterRequest {
   [key: string]: any;
 }
 
-export interface IUser {
+export interface UserDto {
   email: string;
   username: string;
-  password: string;
   [key: string]: any;
 }
 
-export interface ApiSuccessResponseIUser {
+export interface ApiSuccessResponseUserDto {
   success: true;
-  data?: IUser;
+  data?: UserDto;
   [key: string]: any;
 }

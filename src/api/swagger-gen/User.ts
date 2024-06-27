@@ -11,7 +11,7 @@
 
 import {
   ApiErrorResponse,
-  ApiSuccessResponseIUser,
+  ApiSuccessResponseUserDto,
   ApiSuccessResponseUserLoginResponse,
   UserLoginRequest,
   UserRegisterRequest,
@@ -56,7 +56,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request GET:/user/{username}
    */
   userDetails = (username: string, params: RequestParams = {}) =>
-    this.request<ApiSuccessResponseIUser | ApiErrorResponse, void>({
+    this.request<ApiSuccessResponseUserDto | ApiErrorResponse, void>({
       path: `/user/${username}`,
       method: "GET",
       format: "json",

@@ -1,12 +1,12 @@
 import UserPage from "../../components/user-page/user-page";
 import { FC } from "react";
-import { IUser } from "@/api/swagger-gen/data-contracts";
+import { UserDto } from "@/api/swagger-gen/data-contracts";
 
 interface UserProps {
   params: {
     username: string;
   };
-  userData: IUser;
+  userData: UserDto;
 }
 
 const User: FC<UserProps> = () => {
