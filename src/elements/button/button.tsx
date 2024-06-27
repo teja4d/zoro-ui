@@ -31,7 +31,7 @@ function Button({
       <div className="flex justify-center items-center">
         {" "}
         {isLoading && (
-          <span className="h-5 w-5  block rounded-full border-6 border-t-blue-300 animate-spin  m-1"></span>
+          <p className="">{"Loading..."}</p>
         )}
         {!isLoading && <p className="">{label}</p>}
       </div>
