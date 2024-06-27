@@ -12,22 +12,22 @@
 import {
   ApiErrorResponse,
   ApiSuccessResponseIUser,
-  ApiSuccessResponseString,
+  ApiSuccessResponseUserLoginResponse,
   UserLoginRequest,
   UserRegisterRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Auth<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
+export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
    * @name Login
-   * @request POST:/auth/login
+   * @request POST:/user/login
    */
   login = (data: UserLoginRequest, params: RequestParams = {}) =>
-    this.request<ApiErrorResponse | ApiSuccessResponseString, void>({
-      path: `/auth/login`,
+    this.request<ApiErrorResponse | ApiSuccessResponseUserLoginResponse, void>({
+      path: `/user/login`,
       method: "POST",
       body: data,
       type: ContentType.Json,
@@ -38,11 +38,11 @@ export class Auth<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * No description
    *
    * @name Register
-   * @request POST:/auth/register
+   * @request POST:/user/register
    */
   register = (data: UserRegisterRequest, params: RequestParams = {}) =>
     this.request<ApiErrorResponse | Record<string, any>, void>({
-      path: `/auth/register`,
+      path: `/user/register`,
       method: "POST",
       body: data,
       type: ContentType.Json,
@@ -53,11 +53,11 @@ export class Auth<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * No description
    *
    * @name UserDetails
-   * @request GET:/auth/user/{username}
+   * @request GET:/user/{username}
    */
   userDetails = (username: string, params: RequestParams = {}) =>
     this.request<ApiSuccessResponseIUser | ApiErrorResponse, void>({
-      path: `/auth/user/${username}`,
+      path: `/user/${username}`,
       method: "GET",
       format: "json",
       ...params,

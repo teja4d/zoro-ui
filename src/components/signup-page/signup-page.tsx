@@ -46,7 +46,7 @@ const SignUpForm = () => {
     };
     setLoading(true);
     const isSignedUp = await registerUser(signupData);
-    console.log(isSignedUp)
+  
     if (isSignedUp) {
       setLoading(false);
       router.push(`/user/${username}`);

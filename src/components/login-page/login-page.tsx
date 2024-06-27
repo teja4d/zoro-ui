@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { loginUser } from "../../api/auth/auth-api";
 import {
-  ApiErrorResponse,
-  ApiSuccessResponseString,
   UserLoginRequest,
 } from "../../api/swagger-gen/data-contracts";
 import Banner from "../../elements/banner/banner";
@@ -36,9 +34,7 @@ const LoginForm = () => {
     };
     setLoading(true);
 
-    const loggedInUser = (await loginUser(loginData)) as
-      | ApiSuccessResponseString
-      | ApiErrorResponse;
+    const loggedInUser = (await loginUser(loginData))
 
     if (loggedInUser && loggedInUser.success) {
       setLoading(false);

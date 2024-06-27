@@ -1,21 +1,19 @@
-import { Auth } from '../swagger-gen/Auth';
-import { ApiSuccessResponseString } from '../swagger-gen/data-contracts';
-import { UserLoginRequest, ApiErrorResponse, UserRegisterRequest, ApiSuccessResponseIUser } from '../swagger-gen/data-contracts';
+import { UserLoginRequest, ApiErrorResponse, UserRegisterRequest, ApiSuccessResponseIUser, ApiSuccessResponseUserLoginResponse } from '../swagger-gen/data-contracts';
+import { User } from '../swagger-gen/User';
 
-const auth = new Auth({
+const auth = new User({
     baseUrl: 'http://localhost:5000',
 });
 
-export const loginUser = async (loginData: UserLoginRequest): Promise<ApiSuccessResponseString | ApiErrorResponse | void> => {
+export const loginUser = async (loginData: UserLoginRequest): Promise<ApiSuccessResponseUserLoginResponse | ApiErrorResponse> => {
     try {
-        const response = await auth.login(loginData)
+        const response = await auth.login(loginData);
         if (response.ok) {
             return response.data;
         }
-
-    } catch (error: any) {
-        console.error('Error logging in:', error);
-        return error;
+        return response.data;
+    } catch (error) {
+        return error as ApiErrorResponse;
     }
 };
 

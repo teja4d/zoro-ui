@@ -16,9 +16,15 @@ export interface ApiErrorResponse {
   [key: string]: any;
 }
 
-export interface ApiSuccessResponseString {
+export interface UserLoginResponse {
+  token: string;
+  message: string;
+  [key: string]: any;
+}
+
+export interface ApiSuccessResponseUserLoginResponse {
   success: true;
-  data?: string;
+  data?: UserLoginResponse;
   [key: string]: any;
 }
 
