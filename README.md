@@ -1,32 +1,102 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zoro-UI
 
-## Getting Started
+Zoro-UI is a Next.js project designed to provide a robust user interface with extensive testing and API integration capabilities. This README outlines the project's structure, dependencies, and how to set up and run the application.
 
-First, run the development server:
+## Table of Contents
+- [Installation](#installation)
+- [Scripts](#scripts)
+- [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [API Integration](#api-integration)
 
+## Installation
+
+To get started with Zoro-UI, clone the repository and install the necessary dependencies.
+
+```bash
+git clone <repository-url>
+cd zoro-ui
+npm install
+```
+
+## Scripts
+
+Here is a list of scripts you can run with `npm`:
+
+- **dev**: Runs the application in development mode.
+  ```bash
+  npm run dev
+  ```
+- **build**: Builds the application for production.
+  ```bash
+  npm run build
+  ```
+- **start**: Starts the application in production mode.
+  ```bash
+  npm run start
+  ```
+- **lint**: Lints the project using ESLint.
+  ```bash
+  npm run lint
+  ```
+- **test**: Runs the tests using Jest.
+  ```bash
+  npm run test
+  ```
+- **cypress:open**: Opens the Cypress test runner.
+  ```bash
+  npm run cypress:open
+  ```
+- **swagger**: Generates TypeScript API clients from Swagger definitions.
+  ```bash
+  npm run swagger
+  ```
+
+## Running the Application
+
+To run the application in development mode:
 
 ```bash
 npm run dev
 ```
 
+To build the application for production:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To start the application in production mode:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run start
+```
 
-## Learn More
+## Testing
 
-To learn more about Next.js, take a look at the following resources:
+Zoro-UI uses Jest and Cypress for testing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- To run unit tests with Jest:
+  ```bash
+  npm run test
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- To run end-to-end tests with Cypress:
+  ```bash
+  npm run cypress:open
+  ```
 
-## Deploy on Vercel
+## API Integration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project includes a script to generate TypeScript API clients from Swagger definitions:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+npm run swagger
+```
+
+This script will:
+1. Remove the existing Swagger-generated files.
+2. Fetch the latest Swagger definition from the specified URL.
+3. Generate the TypeScript API clients using the `swagger-typescript-api` tool.
+
+Ensure the Swagger JSON is accessible at `http://localhost:5000/swagger.json` before running this script.
