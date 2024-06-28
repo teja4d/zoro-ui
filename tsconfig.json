@@ -17,7 +17,9 @@
         "name": "next"
       }
     ],
-    "types": ["node", "jest", "@types/testing-library__react", "@types/tailwindcss"],
+    "types": ["node",
+     "jest",
+      "@types/testing-library__react"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -31,7 +33,8 @@
     "tests",
     "jest.config.ts",
     "cypress/e2e/login-page.cy.js",
-    "cypress/e2e/signup-page.cy.js"
+    "cypress/e2e/signup-page.cy.js",
+    "__tests__"
   ],
   "exclude": ["node_modules"]
 }
