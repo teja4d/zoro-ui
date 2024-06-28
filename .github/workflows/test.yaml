@@ -14,8 +14,8 @@ jobs:
         with:
           node-version: "14" # Specify a Node.js version
 
-      - name: Clear Jest Cache
-        run: npx jest --clearCache
+      #- name: Clear Jest Cache
+       # run: npx jest --clearCache
 
       - name: Install dependencies
         run: |
