@@ -1,15 +1,27 @@
 import { redirect } from "next/navigation";
-import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import { JwtPayload } from "jsonwebtoken";
 import { getUserDetails } from "../../../api/users/user-api";
 import UserPage from "../../../components/user-page/user-page";
 import { cookies } from "next/headers";
 import { verifyJWT } from "@/utils/jwt-auth";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface UserPageProps {
   params: {
     username: string;
   };
 }
+
+export const generateMetadata = async (
+  { params }: UserPageProps
+): Promise<Metadata> => {
+  console.log("metadata", params);
+  const username = params.username.toUpperCase() || "";
+  return {
+    title: `${username} - ZORO UK`,
+    description: "ZORO Uk Take Home Test",
+  };
+};
 
 const User = async ({ params }: UserPageProps) => {
   const { username } = params;

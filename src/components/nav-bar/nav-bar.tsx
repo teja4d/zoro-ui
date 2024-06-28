@@ -29,6 +29,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <hr className="m-auto mt-2 max-w-7xl border-t-0.5 border-gray-500" />
     </nav>
   );
 };

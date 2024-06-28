@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import LoginForm from "../../components/login-page/login-page";
 import LoginLayout from "./layout";
+export const metadata: Metadata = {
+  title: "Login - ZORO UK",
+  description: "ZORO Uk Take Home Test",
+};
 
 const LoginPage = () => {
   return (

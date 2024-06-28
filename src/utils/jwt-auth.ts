@@ -16,7 +16,8 @@ export const signJWTAndSetCookie = (username: string): string => {
   return token;
 };
 
-export const verifyJWT = (token: string): DecodedToken | null => {
+export const verifyJWT = (token: string | undefined): DecodedToken | null => {
+  if(!token) return null;
   try {
     // Verify JWT token
     const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET!) as DecodedToken;

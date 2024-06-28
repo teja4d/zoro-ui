@@ -1,8 +1,13 @@
+import { Metadata } from "next";
 import { ReactNode } from "react";
 
 interface LoginLayoutProps {
   children: ReactNode;
 }
+export const metadata: Metadata = {
+  title: "Login - ZORO UK",
+  description: "ZORO Uk Take Home Test",
+};
 
 const LoginLayout = ({ children }: LoginLayoutProps) => {
   return (
