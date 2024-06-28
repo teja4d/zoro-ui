@@ -6,8 +6,8 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -17,12 +17,21 @@
         "name": "next"
       }
     ],
-    "types": ["node","jest","@types/testing-library__react","@types/tailwindcss"],
+    "types": ["node", "jest", "@types/testing-library__react", "@types/tailwindcss"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"] // Example path mapping for '@' imports
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","tests", "jest.config.ts", "cypress/e2e/login-page.cy.js", "cypress/e2e/signup-page.cy.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "tests",
+    "jest.config.ts",
+    "cypress/e2e/login-page.cy.js",
+    "cypress/e2e/signup-page.cy.js"
+  ],
   "exclude": ["node_modules"]
 }

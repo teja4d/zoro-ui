@@ -23,10 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm i
-          npm update jest typescript  # Update Jest and TypeScript
-          npm install ts-node ts-jest --save-dev # Install ts-node and ts-jest
-
+          npm install
       - name: Run unit tests
         env:
           TS_NODE_TRANSPILE_ONLY: "true"
