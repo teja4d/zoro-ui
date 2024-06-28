@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "ES6",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -17,13 +21,15 @@
         "name": "next"
       }
     ],
-    "types": ["node",
-     "jest",
-      "@types/testing-library__react"],
+    "types": [
+      "node",
+      "jest",
+      "@types/testing-library__react"
+    ]
     //"baseUrl": ".",
-   // "paths": {
-   //   "@/*": ["./src/*"]
-   // }
+    // "paths": {
+    //   "@/*": ["./src/*"]
+    // }
   },
   "include": [
     "next-env.d.ts",
@@ -34,7 +40,9 @@
     "jest.config.ts",
     "cypress/e2e/login-page.cy.js",
     "cypress/e2e/signup-page.cy.js",
-    "__tests__/**/*.ts",
+    "__tests__/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
