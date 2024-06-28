@@ -1,7 +1,7 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 type ButtonProps = {
-  label: string;
+  label: string | ReactNode;
   className?: string;
   isDisabled?: boolean;
   type: "button" | "submit" | "reset";
