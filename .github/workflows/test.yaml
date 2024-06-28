@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           #latest version of node
-          node-version: 'latest'
+          node-version: '22'
 
       - name: Clear npm cache
         run: npm cache clean --force
