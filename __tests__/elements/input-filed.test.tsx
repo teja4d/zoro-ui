@@ -1,4 +1,4 @@
-import InputField from "../../src/elements/input-fields/input-field";
+import InputField from "../../src/components/elements/input-fields/input-field";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 

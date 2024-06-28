@@ -1,0 +1,125 @@
+[
+    {
+        "title": "Personal Information",
+        "items": [
+            {
+                "title": "Age",
+                "value": 36
+            },
+            {
+                "title": "Profession",
+                "value": "Entrepreneur, Former Founder"
+            },
+            {
+                "title": "Location",
+                "value": "California, USA"
+            }
+        ]
+    },
+    {
+        "title": "Personality Traits",
+        "items": [
+            {
+                "title": "Introverted"
+            },
+            {
+                "title": "Detail-oriented"
+            },
+            {
+                "title": "Adventurous"
+            }
+        ]
+    },
+    {
+        "title": "Skills",
+        "items": [
+            {
+                "title": "Business & Digital Strategy"
+            },
+            {
+                "title": "eCommerce"
+            },
+            {
+                "title": "Marketing"
+            }
+        ]
+    },
+    {
+        "title": "Interests and Hobbies",
+        "items": [
+            {
+                "title": "Yoga"
+            },
+            {
+                "title": "Reading Non-fiction"
+            },
+            {
+                "title": "Listening to Jazz Music"
+            }
+        ]
+    },
+    {
+        "title": "Health and Wellness",
+        "items": [
+            {
+                "title": "Practices yoga and meditation"
+            },
+            {
+                "title": "Follows a plant-based diet"
+            }
+        ]
+    },
+    {
+        "title": "Personal Achievements",
+        "items": [
+            {
+                "title": "Launched two successful startups"
+            },
+            {
+                "title": "Published a book on leadership"
+            }
+        ]
+    },
+    {
+        "title": "Important Relationships",
+        "items": [
+            {
+                "title": "Close-knit family"
+            },
+            {
+                "title": "Few but very close friends"
+            }
+        ]
+    },
+    {
+        "title": "Values in Interactions",
+        "items": [
+            {
+                "title": "Honesty"
+            },
+            {
+                "title": "Loyalty"
+            },
+            {
+                "title": "Creativity"
+            }
+        ]
+    },
+    {
+        "title": "Specific Requirements",
+        "items": [
+            {
+                "title": "Avoid Slang",
+                "value": "Yes"
+            },
+            {
+                "title": "Prefer Active Voice",
+                "value": "Yes"
+            },
+            {
+                "title": "Use Technical Jargon",
+                "value": "No"
+            }
+        ]
+    }
+]

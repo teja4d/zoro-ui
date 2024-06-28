@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LoginForm from "../../components/login-page/login-page";
+import LoginForm from "../../components/login-form/login-form";
 import LoginLayout from "./layout";
 export const metadata: Metadata = {
   title: "Login - ZORO UK",

@@ -1,12 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState, FormEvent } from "react";
-import { loginUser, registerUser } from "../../api/users/user-api";
+import { registerUser } from "../../api/users/user-api";
 import { UserRegisterRequest } from "../../api/swagger-gen/data-contracts";
-import Banner from "../../elements/banner/banner";
-import Button from "../../elements/button/button";
-import InputField from "../../elements/input-fields/input-field";
+import Banner from "../elements/banner/banner";
+import Button from "../elements/button/button";
+import InputField from "../elements/input-fields/input-field";
 import Link from "next/link";
 import { signJWTAndSetCookie } from "@/utils/jwt-auth";
 

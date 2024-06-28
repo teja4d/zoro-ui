@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { useState, FormEvent, useEffect } from "react";
 import { loginUser } from "../../api/users/user-api";
 import { UserLoginRequest } from "../../api/swagger-gen/data-contracts";
-import Banner from "../../elements/banner/banner";
-import Button from "../../elements/button/button";
-import InputField from "../../elements/input-fields/input-field";
+import Banner from "../elements/banner/banner";
+import Button from "../elements/button/button";
+import InputField from "../elements/input-fields/input-field";
 import Link from "next/link";
 import { signJWTAndSetCookie } from "@/utils/jwt-auth";
 
