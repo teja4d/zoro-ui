@@ -21,7 +21,11 @@ jobs:
         run: |
           npm ci
           npm update jest typescript  # Update Jest and TypeScript
-          npm install ts-node --save-dev # Install ts-node
+          npm install ts-jest --save-dev # Install ts-node and ts-jest
+
+      - name: Configure Jest
+        run: |
+          echo "module.exports = { preset: 'ts-jest', testEnvironment: 'node' };" > jest.config.js
 
       - name: Run unit tests
         run: npm test -- --verbose # Run Jest with verbose output
