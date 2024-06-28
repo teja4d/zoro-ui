@@ -1,6 +1,6 @@
 import InputField from "../../src/components/elements/input-fields/input-field";
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/";
 
 describe("InputField", () => {
   test("renders input field with label", () => {

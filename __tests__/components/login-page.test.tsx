@@ -40,7 +40,9 @@ describe("LoginPage", () => {
     (usernameInput as HTMLInputElement).value = "john";
     (passwordInput as HTMLInputElement).value = "";
     //submit the form
-    submitButton.click();
+    await act(async () => {
+      fireEvent.click(submitButton);
+    });
     const bannerElement = await screen.findByRole("alert");
     expect(bannerElement).toBeInTheDocument();
   });
@@ -56,8 +58,9 @@ describe("LoginPage", () => {
 
   test("shows error message when submitting form with empty fields", async () => {
     render(<LoginPage />);
-    fireEvent.click(screen.getByText("Login"));
-
+    await act(async () => {
+      fireEvent.click(screen.getByText("Login"));
+    });
     await act(async () => {
       expect(await screen.findByRole("alert")).toBeInTheDocument();
     });
