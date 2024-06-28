@@ -17,7 +17,7 @@
         "name": "next"
       }
     ],
-    "types": ["node","jest","@types/testing-library__react"],
+    "types": ["node","jest","@types/testing-library__react","@types/tailwindcss"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"] // Example path mapping for '@' imports
