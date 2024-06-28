@@ -13,6 +13,7 @@ import {
   ApiErrorResponse,
   ApiSuccessResponseUserDto,
   ApiSuccessResponseUserLoginResponse,
+  ApiSuccessResponseUserRegisterResponse,
   UserLoginRequest,
   UserRegisterRequest,
 } from "./data-contracts";
@@ -41,7 +42,7 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
    * @request POST:/user/register
    */
   register = (data: UserRegisterRequest, params: RequestParams = {}) =>
-    this.request<ApiErrorResponse | Record<string, any>, void>({
+    this.request<ApiErrorResponse | ApiSuccessResponseUserRegisterResponse, void>({
       path: `/user/register`,
       method: "POST",
       body: data,

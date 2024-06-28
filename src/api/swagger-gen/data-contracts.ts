@@ -34,6 +34,17 @@ export interface UserLoginRequest {
   [key: string]: any;
 }
 
+export interface UserRegisterResponse {
+  message: string;
+  [key: string]: any;
+}
+
+export interface ApiSuccessResponseUserRegisterResponse {
+  success: true;
+  data?: UserRegisterResponse;
+  [key: string]: any;
+}
+
 export interface UserRegisterRequest {
   email: string;
   username: string;

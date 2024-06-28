@@ -39,7 +39,7 @@ const LoginForm = () => {
       signJWTAndSetCookie(username);
       router.push(`/user/${username}`);
     } else {
-      setError("Invalid username or password.");
+      setError(loggedInUser.error || "Something went wrong");
       setShow(true);
       setLoading(false);
     }

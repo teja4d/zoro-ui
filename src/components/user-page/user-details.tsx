@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import userDetails from "./data/user-details.json";
+import React from "react";
+import userDetails from "../../data/user-details.json";
 
 interface UserDetailsProps {
   title: string;

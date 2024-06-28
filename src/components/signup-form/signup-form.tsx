@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { redirect } from "next/navigation";
 import { useState, FormEvent } from "react";
 import { registerUser } from "../../api/users/user-api";
 import { UserRegisterRequest } from "../../api/swagger-gen/data-contracts";
@@ -9,6 +8,8 @@ import Button from "../elements/button/button";
 import InputField from "../elements/input-fields/input-field";
 import Link from "next/link";
 import { signJWTAndSetCookie } from "@/utils/jwt-auth";
+import { useRouter } from "next/navigation";
+import { is } from "node_modules/cypress/types/bluebird";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState<string | undefined>();
@@ -18,7 +19,7 @@ const SignUpForm = () => {
   const [error, setError] = useState<string>();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(undefined);
@@ -47,12 +48,12 @@ const SignUpForm = () => {
     setLoading(true);
     const isSignedUp = await registerUser(signupData);
 
-    if (isSignedUp) {
+    if (isSignedUp.success) {
       setLoading(false);
       signJWTAndSetCookie(username);
-      redirect(`/user/${username}`);
+      router.push(`/user/${username}`);
     } else {
-      setError("Something went wrong");
+      setError(isSignedUp.error || "Something went wrong");
       setShow(true);
       setLoading(false);
     }
