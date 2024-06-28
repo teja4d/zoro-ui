@@ -1,6 +1,6 @@
 describe("SignupPage", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/signup");
+        cy.visit("/signup");
     });
 
     it("displays the signup form", () => {

@@ -7,24 +7,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          #latest version of node
-          node-version: '22'
-
-      - name: Clear npm cache
-        run: npm cache clean --force
-
-      - name: Remove node_modules
-        run: |
-          rm -rf node_modules
+          # Use the latest stable Node.js version
+          node-version: 'latest'
 
       - name: Install dependencies
-        run: |
-          npm install
+        run: npm install
+
       - name: Run unit tests
         env:
           TS_NODE_TRANSPILE_ONLY: "true"
@@ -38,5 +32,43 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cypress-
 
+      - name: Build application
+        run: npm run build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+  cypress-run:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: build
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
+      - name: Start application
+        run: npm start
+
       - name: Run Cypress tests
-        run: npx cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60

@@ -37,8 +37,8 @@ describe("LoginPage", () => {
     const passwordInput = screen.getByTestId("password");
     const submitButton = screen.getByRole("button");
     //fill in the form
-    (usernameInput as HTMLInputElement).value = "john";
-    (passwordInput as HTMLInputElement).value = "";
+    usernameInput.value = "john";
+    passwordInput.value = "";
     //submit the form
     await act(async () => {
       fireEvent.click(submitButton);

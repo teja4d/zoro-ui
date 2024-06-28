@@ -1,6 +1,6 @@
 describe("LoginPage", () => {
     beforeEach(() => {
-        cy.visit("http://localhost:3000/login");
+        cy.visit("/");
     });
 
     it("displays the login form", () => {
