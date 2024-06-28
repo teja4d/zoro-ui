@@ -13,7 +13,6 @@
     "swagger": "rm -rf src/api/swagger-gen/* && curl -k http://localhost:5000/swagger.json  -o src/api/swagger-gen/zoroapi.json && swagger-typescript-api -p src/api/swagger-gen/zoroapi.json -o src/api/swagger-gen/ -t src/api/templates --modular --module-name-first-tag"
   },
   "dependencies": {
-    "@types/tailwindcss": "^3.1.0",
     "autoprefixer": "^10.4.19",
     "cookie": "^0.6.0",
     "js-cookie": "^3.0.5",
@@ -33,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/tailwindcss": "^3.1.0",
     "@types/testing-library__jest-dom": "^6.0.0",
     "@types/testing-library__react": "^10.2.0",
     "cypress": "^13.12.0",
