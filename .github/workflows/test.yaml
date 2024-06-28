@@ -21,7 +21,7 @@ jobs:
         run: |
           npm ci
           npm update jest typescript  # Update Jest and TypeScript
-          npm install ts-jest --save-dev # Install ts-node and ts-jest
+          npm install ts-node ts-jest --save-dev # Install ts-node and ts-jest
 
       - name: Configure Jest
         run: |
