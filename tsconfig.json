@@ -34,7 +34,7 @@
     "jest.config.ts",
     "cypress/e2e/login-page.cy.js",
     "cypress/e2e/signup-page.cy.js",
-    "__tests__"
+    "__tests__/**/*.ts",
   ],
   "exclude": ["node_modules"]
 }
