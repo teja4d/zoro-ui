@@ -21,15 +21,7 @@
         "name": "next"
       }
     ],
-    "types": [
-      "node",
-      "jest",
-      "@types/testing-library__react"
-    ]
-    //"baseUrl": ".",
-    // "paths": {
-    //   "@/*": ["./src/*"]
-    // }
+    "types": ["node","jest"]
   },
   "include": [
     "next-env.d.ts",
