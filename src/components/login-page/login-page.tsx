@@ -1,15 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import { useRouter } from "next/navigation";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { loginUser } from "../../api/users/user-api";
 import { UserLoginRequest } from "../../api/swagger-gen/data-contracts";
 import Banner from "../../elements/banner/banner";
 import Button from "../../elements/button/button";
 import InputField from "../../elements/input-fields/input-field";
 import Link from "next/link";
-import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
 import { signJWTAndSetCookie } from "@/utils/jwt-auth";
 
 const LoginForm = () => {
@@ -36,7 +34,6 @@ const LoginForm = () => {
     setLoading(true);
 
     const loggedInUser = await loginUser(loginData);
-
     if (loggedInUser && loggedInUser.success) {
       setLoading(false);
       signJWTAndSetCookie(username);

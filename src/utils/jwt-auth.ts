@@ -7,11 +7,10 @@ interface DecodedToken {
 }
 
 export const signJWTAndSetCookie = (username: string): string => {
-  // Generate JWT token
   const token = jwt.sign({ username }, process.env.NEXT_PUBLIC_JWT_SECRET!, {
     expiresIn: '1d',
   });
-  // Set token as cookie with expiry of 1 day
+  Cookies.remove('token');
   Cookies.set('token', token, { expires: 1, secure: process.env.NODE_ENV === 'production', sameSite: 'strict' });
 
   return token;
@@ -25,4 +24,23 @@ export const verifyJWT = (token: string): DecodedToken | null => {
   } catch (err) {
     return null;
   }
+};
+
+export const getLoggedInUser = () : string | undefined => {
+  const token = Cookies.get('token');
+  if (token) {
+    const decoded = verifyJWT(token);
+    return decoded?.username;
+  }
+  return ;
+}
+
+//logut
+export const logout = () => {
+  Cookies.remove('token');
+};
+
+export const isLoggedIn = (): boolean => {
+  const token = Cookies.get('token');
+  return token ? verifyJWT(token) !== null : false;
 };

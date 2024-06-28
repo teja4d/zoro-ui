@@ -14,11 +14,12 @@ const MainPage = () => {
           <p className="text-2xl text-white font-light">
             This is a Main page,Thankyou for using the page.
           </p>
-          <button className="bg-gray-200 mt-6 text-black hover:bg-gray-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-            <Link href="/login" className="">
-              Login to see more
-            </Link>
-          </button>
+
+          <Link href="/login" className="">
+            <button className="bg-gray-200 mt-6 text-black hover:bg-gray-600 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+              Login to see user details...
+            </button>
+          </Link>
         </div>
       </div>
     </div>
