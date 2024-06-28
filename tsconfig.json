@@ -20,10 +20,10 @@
     "types": ["node",
      "jest",
       "@types/testing-library__react"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    //"baseUrl": ".",
+   // "paths": {
+   //   "@/*": ["./src/*"]
+   // }
   },
   "include": [
     "next-env.d.ts",

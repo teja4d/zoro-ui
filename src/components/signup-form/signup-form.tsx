@@ -7,9 +7,8 @@ import Banner from "../elements/banner/banner";
 import Button from "../elements/button/button";
 import InputField from "../elements/input-fields/input-field";
 import Link from "next/link";
-import { signJWTAndSetCookie } from "@/utils/jwt-auth";
+import { signJWTAndSetCookie } from "../../utils/jwt-auth";
 import { useRouter } from "next/navigation";
-import { is } from "node_modules/cypress/types/bluebird";
 
 const SignUpForm = () => {
   const [username, setUsername] = useState<string | undefined>();

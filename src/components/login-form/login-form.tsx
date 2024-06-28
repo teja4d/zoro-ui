@@ -8,7 +8,7 @@ import Banner from "../elements/banner/banner";
 import Button from "../elements/button/button";
 import InputField from "../elements/input-fields/input-field";
 import Link from "next/link";
-import { signJWTAndSetCookie } from "@/utils/jwt-auth";
+import { signJWTAndSetCookie } from "../../utils/jwt-auth";
 
 const LoginForm = () => {
   const [username, setUsername] = useState<string | undefined>();
