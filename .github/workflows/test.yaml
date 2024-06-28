@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm ci
+          npm i
           npm update jest typescript  # Update Jest and TypeScript
           npm install ts-node ts-jest --save-dev # Install ts-node and ts-jest
 
