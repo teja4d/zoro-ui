@@ -27,10 +27,6 @@ jobs:
           npm update jest typescript  # Update Jest and TypeScript
           npm install ts-node ts-jest --save-dev # Install ts-node and ts-jest
 
-      - name: Configure Jest
-        run: |
-          echo "module.exports = { preset: 'ts-jest', testEnvironment: 'jsdom' };" > jest.config.js
-
       - name: Run unit tests
         env:
           TS_NODE_TRANSPILE_ONLY: "true"
