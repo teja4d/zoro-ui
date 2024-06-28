@@ -12,7 +12,8 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "14" # Specify a Node.js version
+          #latest version of node
+          node-version: 'latest'
 
       - name: Clear npm cache
         run: npm cache clean --force
