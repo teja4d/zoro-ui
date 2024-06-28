@@ -23,12 +23,10 @@ jobs:
           npm update jest typescript  # Update Jest and TypeScript
           npm install ts-node ts-jest --save-dev # Install ts-node and ts-jest
 
-      - name: Configure Jest
-        run: |
-          echo "module.exports = { preset: 'ts-jest', testEnvironment: 'node' };" > jest.config.js
-
       - name: Run unit tests
-        run: npm test -- --verbose # Run Jest with verbose output
+        env:
+          TS_NODE_TRANSPILE_ONLY: "true"
+        run: npx jest --verbose # Run Jest with verbose output
 
       - name: Cache Cypress binary
         uses: actions/cache@v2
