@@ -12,29 +12,12 @@
 import {
   ApiErrorResponse,
   ApiSuccessResponseUserDto,
-  ApiSuccessResponseUserLoginResponse,
   ApiSuccessResponseUserRegisterResponse,
-  UserLoginRequest,
   UserRegisterRequest,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
-  /**
-   * No description
-   *
-   * @name Login
-   * @request POST:/user/login
-   */
-  login = (data: UserLoginRequest, params: RequestParams = {}) =>
-    this.request<ApiErrorResponse | ApiSuccessResponseUserLoginResponse, void>({
-      path: `/user/login`,
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
   /**
    * No description
    *

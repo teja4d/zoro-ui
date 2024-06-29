@@ -16,24 +16,6 @@ export interface ApiErrorResponse {
   [key: string]: any;
 }
 
-export interface UserLoginResponse {
-  token: string;
-  message: string;
-  [key: string]: any;
-}
-
-export interface ApiSuccessResponseUserLoginResponse {
-  success: true;
-  data?: UserLoginResponse;
-  [key: string]: any;
-}
-
-export interface UserLoginRequest {
-  username: string;
-  password: string;
-  [key: string]: any;
-}
-
 export interface UserRegisterResponse {
   message: string;
   [key: string]: any;
@@ -61,5 +43,23 @@ export interface UserDto {
 export interface ApiSuccessResponseUserDto {
   success: true;
   data?: UserDto;
+  [key: string]: any;
+}
+
+export interface UserLoginResponse {
+  token: string;
+  message: string;
+  [key: string]: any;
+}
+
+export interface ApiSuccessResponseUserLoginResponse {
+  success: true;
+  data?: UserLoginResponse;
+  [key: string]: any;
+}
+
+export interface UserLoginRequest {
+  username: string;
+  password: string;
   [key: string]: any;
 }
