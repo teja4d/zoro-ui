@@ -15,8 +15,6 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
-    // Prevent the form from submitting
-    console.log("form data", formData);
     setIsLoading(true);
     setError(null);
     try {
