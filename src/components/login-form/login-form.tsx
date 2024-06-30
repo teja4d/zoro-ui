@@ -37,14 +37,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8">
-      {error && (
-        <Banner
-          message={error}
-          showBanner={true}
-          setShowBanner={() => setError(null)}
-        />
-      )}
+    <div className="mx-auto mt-8">
+        { error && (
+          <Banner
+            message={error}
+            showBanner={true}
+            setShowBanner={() => setError(null)}
+          />
+        )}
       <form
         onSubmit={handleSubmit}
         className=""
@@ -78,7 +78,12 @@ export default function LoginPage() {
             Forgot password?
           </Link>
         </div>
-        <Button label="Login" type="submit" isLoading={isLoading} isDisabled = {username === "" || password === ""}/>
+        <Button
+          label="Login"
+          type="submit"
+          isLoading={isLoading}
+          isDisabled={username === "" || password === ""}
+        />
         <hr className="my-4 border-gray-200" />
         <div className="">
           <p className="text-sm text-gray-600">

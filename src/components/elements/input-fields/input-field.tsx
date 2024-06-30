@@ -27,7 +27,7 @@ const InputField = ({
 }: InputFieldProps) => {
   return (
     <div className="block">
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+      <label htmlFor={id} className="block font-medium text-sm text-gray-500">
         {label}
       </label>
       <input
@@ -37,7 +37,7 @@ const InputField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className={`mt-1 block text-black lg:min-w-80 w-full px-3 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${className}`}
+        className={`mt-1 block text-black w-full px-3 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${className}`}
         aria-invalid={!!error} 
         data-testid={id}
         required={required}

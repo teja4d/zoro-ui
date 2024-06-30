@@ -26,7 +26,7 @@ const Banner: React.FC<BannerProps> = ({ message,
       <div
         role="banner"
         data-cy = "banner"
-        className={`bg-red-400 border-red-500 rounded-sm p-2 mb-4 text-center ${show ? "" : "hidden"}`}
+        className={`bg-red-400 border-red-500 rounded-md p-2 mb-4 text-justify ${show ? "visible" : "hidden"}`}
       >
         <p className="text-sm text-white">{message}</p>
       </div>

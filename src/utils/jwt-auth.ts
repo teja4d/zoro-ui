@@ -1,5 +1,5 @@
 import * as jwt from 'jose';
-import * as Cookies from 'js-cookie';
+import  Cookies from 'js-cookie';
 
 const jwtConfig = {
   secret: new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET),

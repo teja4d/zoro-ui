@@ -40,87 +40,94 @@ const SignUpForm = () => {
       password,
     };
     setLoading(true);
-    const isSignedUp = await registerUser(signupData);
+    try {
+      const isSignedUp = await registerUser(signupData);
 
-    if (isSignedUp.success) {
-      setLoading(false);
-      signJWTAndSetCookie(username);
-      router.push(`/user/${username}`);
-    } else {
-      setError(isSignedUp.error || "Something went wrong");
+      if (isSignedUp.success) {
+        setLoading(false);
+        signJWTAndSetCookie(username);
+        router.push(`/user/${username}`);
+      } else {
+        setError(isSignedUp.error || "Something went wrong");
+        setLoading(false);
+      }
+    } catch (error) {
+      setError("An unexpected error occurred. Please try again.");
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSignUp} className="" role="form">
-      {error  && (
-        <Banner
-          setShowBanner={() => setError(null)}
-          showBanner={true}
-          message={error}
+    <div className="mx-auto mt-8">
+      {error && (
+          <Banner
+            setShowBanner={() => setError(null)}
+            showBanner={true}
+            message={error}
+          />
+        )}
+      <form onSubmit={handleSignUp} className="" role="form">
+        <InputField
+          label="Username"
+          type="text"
+          name="username"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="John Doe"
+          className="mb-4"
+          required
         />
-      )}
-      <InputField
-        label="Username"
-        type="text"
-        name="username"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="John Doe"
-        className="mb-4"
-        required
-      />
-      <InputField
-        label="Email"
-        type="email"
-        name="email"
-        id="emailname"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="John Doe"
-        className="mb-4"
-        required
-      />
-      <InputField
-        label="Password"
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="***********"
-        className="mb-4"
-        required
-      />
-      <InputField
-        label="Confirm password"
-        name="password2"
-        type="password"
-        id="password2"
-        value={password2}
-        onChange={(e) => setPassword2(e.target.value)}
-        placeholder="***********"
-        className="mb-4"
-        required
-      />
-      <Button
-        label="Signup"
-        onClick={() => {}}
-        type={"submit"}
-        isLoading={loading}
-      />
-      <hr className="my-4 border-gray-200" />
-      <div className="">
-        <p className="text-sm text-gray-600">
-          Already have an account?{" "}
-          <Link href="/login" className="text-indigo-600 hover:underline">
-            Login
-          </Link>
-        </p>
-      </div>
-    </form>
+        <InputField
+          label="Email"
+          type="email"
+          name="email"
+          id="emailname"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="John Doe"
+          className="mb-4"
+          required
+        />
+        <InputField
+          label="Password"
+          type="password"
+          name="password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="***********"
+          className="mb-4"
+          required
+        />
+        <InputField
+          label="Confirm password"
+          name="password2"
+          type="password"
+          id="password2"
+          value={password2}
+          onChange={(e) => setPassword2(e.target.value)}
+          placeholder="***********"
+          className="mb-4"
+          required
+        />
+        <Button
+          label="Signup"
+          onClick={() => {}}
+          type={"submit"}
+          isLoading={loading}
+        />
+        <hr className="my-4 border-gray-200" />
+        <div className="">
+          <p className="text-sm text-gray-600">
+            Already have an account?{" "}
+            <Link href="/login" className="text-indigo-600 hover:underline">
+              Login
+            </Link>
+          </p>
+        </div>
+      </form>
+    </div>
   );
 };
 

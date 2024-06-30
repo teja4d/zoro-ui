@@ -7,6 +7,9 @@ export async function middleware(request: NextRequest) {
     const token = request.cookies.get('token');
     const { pathname } = new URL(request.url);
 
+    if(pathname === '/login') {
+        return NextResponse.next();
+    }
     try {
         // Verify JWT token and decode payload
         const decoded = await verifyJWT(token?.value);
