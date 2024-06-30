@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 type BannerProps = {
   message: string;
   showBanner: boolean;
-  setShowBanner: (show: boolean) => void;
+  setShowBanner: () => void;
 };
 
-const Banner: React.FC<BannerProps> = ({
+const Banner: FC<BannerProps> = ({
   message,
   showBanner,
   setShowBanner,

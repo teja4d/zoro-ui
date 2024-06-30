@@ -57,5 +57,13 @@
     }
   },
   //ignore tailwind.config.ts and swagger-gen folder
-  "ignorePatterns": ["tailwind.config.ts", "swagger-gen"]
+  "ignorePatterns": ["tailwind.config.ts", "swagger-gen"],
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "react/require-default-props": "off"
+      }
+    }
+  ]
 }

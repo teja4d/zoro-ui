@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { JSX } from 'react';
 
 import { UserDto } from '../../api/swagger-gen/data-contracts';
 
@@ -9,7 +9,7 @@ interface UserPageProps {
   userData: UserDto | null;
 }
 
-const UserPage: FC<UserPageProps> = ({ username, userData }) => {
+function UserPage({ username, userData }: UserPageProps): JSX.Element {
   // page not found
   if (!userData) {
     return (
@@ -30,6 +30,6 @@ const UserPage: FC<UserPageProps> = ({ username, userData }) => {
       </div>
     </div>
   );
-};
+}
 
 export default UserPage;
