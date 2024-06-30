@@ -14,11 +14,12 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsLoading(true);
     setError(null);
     try {
-      const result = await authenticate(formData);
+      const result = await authenticate({ username, password });
       if (result && "error" in result) {
         setError(result.error);
       }
@@ -42,7 +43,7 @@ export default function LoginPage() {
         />
       )}
       <form
-        action={handleSubmit}
+        onSubmit={handleSubmit}
         className=""
         role="form"
         data-testid="login-form"
@@ -74,7 +75,7 @@ export default function LoginPage() {
             Forgot password?
           </Link>
         </div>
-        <Button label="Login" type="submit" isLoading={isLoading} />
+        <Button label="Login" type="submit" isLoading={isLoading} isDisabled = {username === "" || password === ""}/>
         <hr className="my-4 border-gray-200" />
         <div className="">
           <p className="text-sm text-gray-600">
