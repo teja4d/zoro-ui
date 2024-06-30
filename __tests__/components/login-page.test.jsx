@@ -7,6 +7,7 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
+
 import { authenticate } from "../../src/api/auth/auth-api";
 
 jest.mock("next/navigation", () => ({
@@ -39,9 +40,7 @@ describe("LoginPage", () => {
   });
 
   test("renders banner if username or password is invalid", async () => {
-    (authenticate as jest.Mock).mockResolvedValue({
-      error: "Invalid credentials",
-    });
+    (authenticate).mockResolvedValue({ error: "Invalid credentials"});
     render(<LoginPage />);
     //get by data-testid
     const usernameInput = screen.getByTestId("username");
