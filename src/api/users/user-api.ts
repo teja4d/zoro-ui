@@ -1,3 +1,4 @@
+'use server';
 import { ApiErrorResponse, UserRegisterRequest, ApiSuccessResponseUserDto, ApiSuccessResponseUserRegisterResponse } from '../swagger-gen/data-contracts';
 import { User } from '../swagger-gen/User';
 
