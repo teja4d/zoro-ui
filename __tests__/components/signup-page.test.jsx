@@ -19,7 +19,7 @@ describe("SignupPage", () => {
   test("renders signup heading", () => {
     render(<SignupPage />);
     const signupHeadingElement = screen.getByRole("heading", { level: 2 });
-    expect(signupHeadingElement).toHaveTextContent("Sign up");
+    expect(signupHeadingElement).toHaveTextContent("Signup");
   });
 
   test("renders start shopping subheading", () => {

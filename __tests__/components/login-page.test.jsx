@@ -30,7 +30,7 @@ describe("LoginPage", () => {
   test("renders login heading", () => {
     render(<LoginPage />);
     const loginHeadingElement = screen.getByRole("heading", { level: 2 });
-    expect(loginHeadingElement).toHaveTextContent("Log in");
+    expect(loginHeadingElement).toHaveTextContent("Login");
   });
 
   test("renders start shopping subheading", () => {
