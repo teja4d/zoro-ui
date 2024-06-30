@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "../components/nav-bar/nav-bar";
-import Head from "next/head";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"] });
+import './globals.css';
+import Head from 'next/head';
+
+import Navbar from '../components/nav-bar/nav-bar';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "ZORO UK",
-  description: "ZORO Uk Take Home Test",
+  title: 'ZORO UK',
+  description: 'ZORO Uk Take Home Test',
 };
 
 export default function RootLayout({

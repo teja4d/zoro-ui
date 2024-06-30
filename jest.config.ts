@@ -1,10 +1,10 @@
-import type { Config } from 'jest'
-import nextJest from 'next/jest.js'
+import type { Config } from 'jest';
+import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: './',
-})
+});
 
 // Add any custom config to be passed to Jest
 /** @type {import('ts-jest').JestConfigWithTsJest} */
@@ -19,11 +19,11 @@ const config: Config = {
       {
         tsconfig: 'tsconfig.jest.json',
       },
-    ]
+    ],
   },
-  moduleNameMapper:{
-    "^jose": require.resolve("jose")
+  moduleNameMapper: {
+    "^jose": require.resolve("jose"),
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-}
-export default createJestConfig(config)
+};
+export default createJestConfig(config);

@@ -1,4 +1,4 @@
-const AboutPage = () => {
+function AboutPage() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="lg:max-w-md w-full max-w-xs mx-auto p-6 shadow-md rounded-lg">
@@ -12,6 +12,6 @@ const AboutPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default AboutPage;

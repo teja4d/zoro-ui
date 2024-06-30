@@ -1,12 +1,11 @@
 import * as jwt from 'jose';
-import  Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const jwtConfig = {
   secret: new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET),
 };
 
-export const signJWTAndSetCookie = async (username: string) => {
-
+const signJWTAndSetCookie = async (username: string) => {
   const token = await new jwt.SignJWT({ username })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
@@ -18,7 +17,9 @@ export const signJWTAndSetCookie = async (username: string) => {
   return token;
 };
 
-export const verifyJWT = async (token: string | undefined): Promise<jwt.JWTVerifyResult<jwt.JWTPayload> | null> => {
+const verifyJWT = async (
+  token: string | undefined,
+): Promise<jwt.JWTVerifyResult<jwt.JWTPayload> | null> => {
   if (!token) return null;
   try {
     const decoded = await jwt.jwtVerify(token, jwtConfig.secret);
@@ -37,12 +38,14 @@ export const verifyJWT = async (token: string | undefined): Promise<jwt.JWTVerif
 //   return;
 // }
 
-//logut
-export const logout = () => {
+// logut
+const logout = () => {
   Cookies.remove('token');
 };
 
-export const isLoggedIn = async (): Promise<boolean> => {
+const isLoggedIn = async (): Promise<boolean> => {
   const token = Cookies.get('token');
-  return token ? await verifyJWT(token) !== null : false;
+  return token ? (await verifyJWT(token)) !== null : false;
 };
+
+export { signJWTAndSetCookie, verifyJWT, logout, isLoggedIn };

@@ -1,20 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
-"use client";
-import { useState, FormEvent } from "react";
-import { registerUser } from "../../api/users/user-api";
-import { UserRegisterRequest } from "../../api/swagger-gen/data-contracts";
-import Banner from "../elements/banner/banner";
-import Button from "../elements/button/button";
-import InputField from "../elements/input-fields/input-field";
-import Link from "next/link";
-import { signJWTAndSetCookie } from "../../utils/jwt-auth";
-import { useRouter } from "next/navigation";
+'use client';
 
-const SignUpForm = () => {
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [password2, setPassword2] = useState<string>("");
+import { useState, FormEvent } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import { registerUser } from '../../api/users/user-api';
+import { UserRegisterRequest } from '../../api/swagger-gen/data-contracts';
+import Banner from '../elements/banner/banner';
+import Button from '../elements/button/button';
+import InputField from '../elements/input-fields/input-field';
+import { signJWTAndSetCookie } from '../../utils/jwt-auth';
+
+function SignUpForm() {
+  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [password2, setPassword2] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -30,7 +32,7 @@ const SignUpForm = () => {
     setLoading(true);
     try {
       const result = await registerUser(signupData);
-      if (result && "error" in result) {
+      if (result && 'error' in result) {
         setError(result.error);
       }
       if (result.success) {
@@ -39,9 +41,8 @@ const SignUpForm = () => {
         router.push(`/user/${username}`);
       }
     } catch (error) {
-      setError("An unexpected error occurred. Please try again.");
-    }
-    finally {
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
       setLoading(false);
     }
   };
@@ -49,12 +50,12 @@ const SignUpForm = () => {
   return (
     <div className="mx-auto mt-8">
       {error && (
-          <Banner
-            setShowBanner={() => setError(null)}
-            showBanner={true}
-            message={error}
-          />
-        )}
+        <Banner
+          setShowBanner={() => setError(null)}
+          showBanner
+          message={error}
+        />
+      )}
       <form onSubmit={handleSignUp} className="" role="form">
         <InputField
           label="Username"
@@ -103,13 +104,13 @@ const SignUpForm = () => {
         <Button
           label="Signup"
           onClick={() => {}}
-          type={"submit"}
+          type="submit"
           isLoading={loading}
         />
         <hr className="my-4 border-gray-200" />
         <div className="">
           <p className="text-sm text-gray-600">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Link href="/login" className="text-indigo-600 hover:underline">
               Login
             </Link>
@@ -118,6 +119,6 @@ const SignUpForm = () => {
       </form>
     </div>
   );
-};
+}
 
 export default SignUpForm;

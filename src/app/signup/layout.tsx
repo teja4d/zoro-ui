@@ -1,22 +1,20 @@
-import { Metadata } from "next";
-import { ReactNode } from "react";
+import { Metadata } from 'next';
+import { ReactNode } from 'react';
 
 interface LoginLayoutProps {
   children: ReactNode;
 }
 export const metadata: Metadata = {
-  title: "Login - ZORO UK",
-  description: "ZORO Uk Take Home Test",
+  title: 'Login - ZORO UK',
+  description: 'ZORO Uk Take Home Test',
 };
 
-const SignupLayout = ({ children }: LoginLayoutProps) => {
+function SignupLayout({ children }: LoginLayoutProps) {
   return (
-    <div
-      className="flex-grow flex justify-center items-center bg-cover bg-center bg-no-repeat"
-    >
+    <div className="flex-grow flex justify-center items-center bg-cover bg-center bg-no-repeat">
       {children}
     </div>
   );
-};
+}
 
 export default SignupLayout;

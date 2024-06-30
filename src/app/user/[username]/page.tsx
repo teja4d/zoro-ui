@@ -1,6 +1,7 @@
-import { getUserDetails } from "../../../api/users/user-api";
-import UserPage from "../../../components/user-page/user-page";
-import { Metadata } from "next";
+import { Metadata } from 'next';
+
+import { getUserDetails } from '../../../api/users/user-api';
+import UserPage from '../../../components/user-page/user-page';
 
 interface UserPageProps {
   params: {
@@ -11,14 +12,14 @@ interface UserPageProps {
 export const generateMetadata = async ({
   params,
 }: UserPageProps): Promise<Metadata> => {
-  const username = params.username.toUpperCase() || "";
+  const username = params.username.toUpperCase() || '';
   return {
     title: `${username} - ZORO UK`,
-    description: "ZORO Uk Take Home Test",
+    description: 'ZORO Uk Take Home Test',
   };
 };
 
-const User = async ({ params }: UserPageProps) => {
+async function User({ params }: UserPageProps) {
   const { username } = params;
   const userDataJson = await getUserDetails(username);
 
@@ -31,6 +32,6 @@ const User = async ({ params }: UserPageProps) => {
   }
 
   return <UserPage userData={userDataJson.data} username={username} />;
-};
+}
 
 export default User;

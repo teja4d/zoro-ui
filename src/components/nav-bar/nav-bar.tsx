@@ -1,5 +1,6 @@
-import Link from "next/link";
-const Navbar = () => {
+import Link from 'next/link';
+
+function Navbar() {
   return (
     <nav className="p-4">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -32,6 +33,6 @@ const Navbar = () => {
       <hr className="m-auto mt-2 max-w-7xl border-t-0.5 border-gray-500" />
     </nav>
   );
-};
+}
 
 export default Navbar;

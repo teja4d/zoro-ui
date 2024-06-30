@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 type BannerProps = {
   message: string;
@@ -6,12 +6,14 @@ type BannerProps = {
   setShowBanner: (show: boolean) => void;
 };
 
-const Banner: React.FC<BannerProps> = ({ message,
-   showBanner,
-  setShowBanner }) => {
+const Banner: React.FC<BannerProps> = ({
+  message,
+  showBanner,
+  setShowBanner,
+}) => {
   const [show, setShow] = useState(showBanner);
   useEffect(() => {
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setShow(false);
       setShowBanner(false);
     }, 5000);
@@ -22,15 +24,13 @@ const Banner: React.FC<BannerProps> = ({ message,
   }, [setShowBanner]);
 
   return (
-    <>
-      <div
-        role="banner"
-        data-cy = "banner"
-        className={`bg-red-400 border-red-500 rounded-md p-2 mb-4 text-center ${show ? "visible" : "hidden"}`}
-      >
-        <p className="text-sm text-white">{message}</p>
-      </div>
-    </>
+    <div
+      role="banner"
+      data-cy="banner"
+      className={`bg-red-400 border-red-500 rounded-md p-2 mb-4 text-center ${show ? 'visible' : 'hidden'}`}
+    >
+      <p className="text-sm text-white">{message}</p>
+    </div>
   );
 };
 
