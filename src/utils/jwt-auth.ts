@@ -1,39 +1,40 @@
-import { NextApiResponse } from 'next';
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jose';
 import Cookies from 'js-cookie';
 
-interface DecodedToken {
-  username: string;
-}
+const jwtConfig = {
+  secret: new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET),
+};
 
-export const signJWTAndSetCookie = (username: string): string => {
-  const token = jwt.sign({ username }, process.env.NEXT_PUBLIC_JWT_SECRET!, {
-    expiresIn: '1d',
-  });
-  Cookies.remove('token');
-  Cookies.set('token', token, { expires: 1, secure: process.env.NODE_ENV === 'production', sameSite: 'strict' });
+export const signJWTAndSetCookie = async (username: string) => {
 
+  const token = await new jwt.SignJWT({ username })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setIssuer('zoro-uk')
+    .setAudience('zoro-uk')
+    .setExpirationTime('1h')
+    .sign(jwtConfig.secret);
+  Cookies.set('token', token);
   return token;
 };
 
-export const verifyJWT = (token: string | undefined): DecodedToken | null => {
-  if(!token) return null;
+export const verifyJWT = async (token: string | undefined): Promise<jwt.JWTVerifyResult<jwt.JWTPayload> | null> => {
+  if (!token) return null;
   try {
-    // Verify JWT token
-    const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET!) as DecodedToken;
+    const decoded = await jwt.jwtVerify(token, jwtConfig.secret);
     return decoded;
   } catch (err) {
     return null;
   }
 };
 
-export const getLoggedInUser = () : string | undefined => {
+export const getLoggedInUser = async () => {
   const token = Cookies.get('token');
   if (token) {
-    const decoded = verifyJWT(token);
-    return decoded?.username;
+    const decoded = await verifyJWT(token);
+    return decoded?.payload;
   }
-  return ;
+  return;
 }
 
 //logut
@@ -41,7 +42,7 @@ export const logout = () => {
   Cookies.remove('token');
 };
 
-export const isLoggedIn = (): boolean => {
+export const isLoggedIn = async (): Promise<boolean> => {
   const token = Cookies.get('token');
-  return token ? verifyJWT(token) !== null : false;
+  return token ? await verifyJWT(token) !== null : false;
 };

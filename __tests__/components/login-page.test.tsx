@@ -1,17 +1,26 @@
 // Import necessary modules
 import LoginPage from "../../src/app/login/page";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { authenticate } from "../../src/api/auth/auth-api";
 
 jest.mock("next/navigation", () => ({
-  useRouter() {
-    return {
-      prefetch: () => null,
-    };
-  },
+  useRouter: jest.fn(),
 }));
+// Mock the authenticate function
+jest.mock("../../src/api/auth/auth-api");
 
 describe("LoginPage", () => {
+  afterEach(() => {
+    jest.clearAllMocks(); // Clear all mock calls after each test
+  });
+
   test("renders login form", () => {
     render(<LoginPage />);
     const loginFormElement = screen.getByRole("form");
@@ -31,20 +40,24 @@ describe("LoginPage", () => {
   });
 
   test("renders banner if username or password is invalid", async () => {
+    (authenticate as jest.Mock).mockResolvedValue({
+      error: "Invalid credentials",
+    });
     render(<LoginPage />);
     //get by data-testid
     const usernameInput = screen.getByTestId("username");
     const passwordInput = screen.getByTestId("password");
     const submitButton = screen.getByRole("button");
     //fill in the form
-    usernameInput.value = "john";
-    passwordInput.value = "";
+    fireEvent.change(usernameInput, { target: { value: "john" } });
+    fireEvent.change(passwordInput, { target: { value: "/" } });
     //submit the form
-    await act(async () => {
-      fireEvent.click(submitButton);
+    fireEvent.click(submitButton);
+
+    await waitFor(() => {
+      const bannerElement = screen.getByRole("banner");
+      expect(bannerElement).toHaveTextContent("Invalid credentials");
     });
-    const bannerElement = await screen.findByRole("alert");
-    expect(bannerElement).toBeInTheDocument();
   });
 
   test("login button click updates button text", async () => {
@@ -56,13 +69,17 @@ describe("LoginPage", () => {
     expect(button).toHaveTextContent("Login");
   });
 
-  test("shows error message when submitting form with empty fields", async () => {
+  test("Submit button disabled if password is empty", async () => {
     render(<LoginPage />);
-    await act(async () => {
-      fireEvent.click(screen.getByText("Login"));
-    });
-    await act(async () => {
-      expect(await screen.findByRole("alert")).toBeInTheDocument();
-    });
+    const usernameInput = screen.getByTestId("username");
+    fireEvent.change(usernameInput, { target: { value: "john" } });
+    const button = screen.getByRole("button");
+    expect(button).toBeDisabled();
+  });
+
+  test("Submit button disabled if username and password are empty", async () => {
+    render(<LoginPage />);
+    const button = screen.getByRole("button");
+    expect(button).toBeDisabled();
   });
 });

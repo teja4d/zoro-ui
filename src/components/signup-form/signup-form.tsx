@@ -15,28 +15,23 @@ const SignUpForm = () => {
   const [email, setEmail] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
   const [password2, setPassword2] = useState<string | undefined>();
-  const [error, setError] = useState<string>();
-  const [show, setShow] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(undefined);
-    setShow(false);
+    setError(null);
     if (!username || !password || !password2) {
       setError("Please enter all the fields");
-      setShow(true);
       return;
     }
     //valid email
     if (!email || !email.includes("@")) {
       setError("Please enter a valid email");
-      setShow(true);
       return;
     }
     if (password !== password2) {
       setError("Passwords do not match.");
-      setShow(true);
       return;
     }
     const signupData: UserRegisterRequest = {
@@ -53,59 +48,58 @@ const SignUpForm = () => {
       router.push(`/user/${username}`);
     } else {
       setError(isSignedUp.error || "Something went wrong");
-      setShow(true);
       setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSignUp} className="" role="form">
-      {error && show && (
+      {error  && (
         <Banner
-          setShowBanner={() => setShow(false)}
-          showBanner={show}
+          setShowBanner={() => setError(null)}
+          showBanner={true}
           message={error}
         />
       )}
       <InputField
         label="Username"
         type="text"
+        name="username"
         id="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="John Doe"
         className="mb-4"
-        name="username"
       />
       <InputField
         label="Email"
         type="email"
+        name="email"
         id="emailname"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="John Doe"
         className="mb-4"
-        name="email"
       />
       <InputField
         label="Password"
         type="password"
+        name="password"
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="***********"
         className="mb-4"
-        name="password"
       />
       <InputField
         label="Confirm password"
+        name="password2"
         type="password"
         id="password2"
         value={password2}
         onChange={(e) => setPassword2(e.target.value)}
         placeholder="***********"
         className="mb-4"
-        name="password2"
       />
       <Button
         label="Signup"

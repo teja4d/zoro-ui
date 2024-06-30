@@ -34,7 +34,7 @@
     "cypress/e2e/signup-page.cy.js",
     "__tests__/**/*.ts",
     "__tests__/**/*.tsx",
-     "__tests__/components/signup-page.test.jsx", "__tests__/components/login-page.test.jsx", "__tests__/elements/input-filed.test.jsx"  ],
+     "__tests__/components/signup-page.test.jsx", "__tests__/components/login-page.test.tsx", "__tests__/elements/input-filed.test.jsx"  ],
   "exclude": [
     "node_modules"
   ]
