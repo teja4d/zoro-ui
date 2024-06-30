@@ -23,7 +23,7 @@ export default function LoginPage() {
       if (result && "error" in result) {
         setError(result.error);
       }
-      if (result && !("error" in result)) {
+      if (result.success) {
         router.push(`/user/${username}`);
       }
     } catch (err) {
