@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 type BannerProps = {
   message: string;
   showBanner: boolean;
-  setShowBanner: () => void;
+  setShowBanner: (show: boolean) => void;
 };
 
 const Banner: FC<BannerProps> = ({
