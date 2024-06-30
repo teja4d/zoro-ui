@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from 'next/server';
 
 import { verifyJWT } from './utils/jwt-auth';
 
- async function middleware(request: NextRequest) {
+ export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token');
   const { pathname } = new URL(request.url);
 
@@ -31,8 +31,7 @@ import { verifyJWT } from './utils/jwt-auth';
   }
 }
 
-const config = {
+export const config = {
   matcher: ['/', '/login', '/user/:username*'],
 };
 
-export { middleware, config };

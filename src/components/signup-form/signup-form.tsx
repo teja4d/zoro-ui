@@ -106,6 +106,7 @@ function SignUpForm() {
           onClick={() => {}}
           type="submit"
           isLoading={loading}
+          isDisabled={!username || !email || !password || !password2}
         />
         <hr className="my-4 border-gray-200" />
         <div className="">
