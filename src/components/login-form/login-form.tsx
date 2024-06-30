@@ -1,99 +1,92 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useRouter } from "next/navigation";
-import { useState, FormEvent } from "react";
-import { UserLoginRequest } from "../../api/swagger-gen/data-contracts";
-import Banner from "../elements/banner/banner";
-import Button from "../elements/button/button";
-import InputField from "../elements/input-fields/input-field";
+import { useState } from "react";
+import { authenticate } from "../../api/auth/auth-api";
+import InputField from "../../components/elements/input-fields/input-field";
+import Button from "../../components/elements/button/button";
+import Banner from "../../components/elements/banner/banner";
 import Link from "next/link";
-import { signJWTAndSetCookie } from "../../utils/jwt-auth";
-import { loginUser } from "../../api/auth/auth-api";
+import { useRouter } from "next/navigation";
 
-const LoginForm = () => {
-  const [username, setUsername] = useState<string | undefined>();
-  const [password, setPassword] = useState<string | undefined>();
-  const [error, setError] = useState<string>();
-  const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
+export default function LoginPage() {
   const router = useRouter();
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setError(undefined);
-    setShow(false);
-    if (!username || !password) {
-      setError("Please enter both username and password");
-      setShow(true);
-      return;
-    }
-    const loginData: UserLoginRequest = {
-      username,
-      password,
-    };
-    setLoading(true);
-
-    const loggedInUser = await loginUser(loginData);
-    if (loggedInUser && loggedInUser.success) {
-      setLoading(false);
-      signJWTAndSetCookie(username);
-      router.push(`/user/${username}`);
-    } else {
-      setError(loggedInUser?.error || "Something went wrong");
-      setShow(true);
-      setLoading(false);
+  const handleSubmit = async (formData: FormData) => {
+    // Prevent the form from submitting
+    console.log("form data", formData);
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await authenticate(formData);
+      if (result && "error" in result) {
+        setError(result.error);
+      }
+      if (result && !("error" in result)) {
+        router.push(`/user/${username}`);
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleLogin} className="" role="form">
-      {error && show && (
+    <div className="max-w-md mx-auto mt-8">
+      {error && (
         <Banner
-          setShowBanner={() => setShow(false)}
-          showBanner={show}
           message={error}
+          showBanner={true}
+          setShowBanner={() => setError(null)}
         />
       )}
-      <InputField
-        label="Username"
-        type="text"
-        id="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="John Doe"
-        className="mb-4"
-      />
-      <InputField
-        label="Password"
-        type="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="***********"
-        className="mb-1"
-      />
-      <div className="mb-6">
-        <a href="/forgot-password" className="text-sm text-indigo-600">
-          Forgot password?
-        </a>
-      </div>
-      <Button
-        label="Login"
-        onClick={() => {}}
-        type={"submit"}
-        isLoading={loading}
-      />
-      <hr className="my-4 border-gray-200" />
-      <div className="">
-        <p className="text-sm text-gray-600">
-          Don't have an account?{" "}
-          <Link href="/signup" className="text-indigo-600 hover:underline">
-            Sign up
+      <form
+        action={handleSubmit}
+        className=""
+        role="form"
+        data-testid="login-form"
+      >
+        <InputField
+          label="Username"
+          type="text"
+          id="username"
+          name="username"
+          placeholder="John Doe"
+          className="mb-4"
+          required
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
+        />
+        <InputField
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="***********"
+          className="mb-1"
+          required
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <div className="mb-6">
+          <Link href="/forgot-password" className="text-sm text-indigo-600">
+            Forgot password?
           </Link>
-        </p>
-      </div>
-    </form>
+        </div>
+        <Button label="Login" type="submit" isLoading={isLoading} />
+        <hr className="my-4 border-gray-200" />
+        <div className="">
+          <p className="text-sm text-gray-600">
+            Don't have an account?{" "}
+            <Link href="/signup" className="text-indigo-600 hover:underline">
+              Sign up
+            </Link>
+          </p>
+        </div>
+      </form>
+    </div>
   );
-};
-
-export default LoginForm;
+}

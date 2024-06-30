@@ -12,10 +12,9 @@ interface UserPageProps {
   };
 }
 
-export const generateMetadata = async (
-  { params }: UserPageProps
-): Promise<Metadata> => {
-  console.log("metadata", params);
+export const generateMetadata = async ({
+  params,
+}: UserPageProps): Promise<Metadata> => {
   const username = params.username.toUpperCase() || "";
   return {
     title: `${username} - ZORO UK`,
@@ -25,21 +24,6 @@ export const generateMetadata = async (
 
 const User = async ({ params }: UserPageProps) => {
   const { username } = params;
-  const cookieStore = cookies();
-  const token = cookieStore.get("token")?.value;
-  if (!token) {
-    redirect(`/login?returnUrl=/user/${username}`);
-  }
-
-  try {
-    const decoded = verifyJWT(token);
-    if ((decoded as JwtPayload).username !== username) {
-      throw new Error("Invalid token");
-    }
-  } catch (error) {
-    redirect(`/login?returnUrl=/user/${username}`);
-  }
-
   const userDataJson = await getUserDetails(username);
 
   if (!userDataJson?.success) {

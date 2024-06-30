@@ -24,7 +24,7 @@ const Banner: React.FC<BannerProps> = ({ message,
   return (
     <>
       <div
-        role="alert"
+        role="banner"
         data-cy = "banner"
         className={`bg-red-400 border-red-500 rounded-sm p-2 mb-4 text-center ${show ? "" : "hidden"}`}
       >
