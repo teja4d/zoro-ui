@@ -70,6 +70,7 @@ const SignUpForm = () => {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="John Doe"
         className="mb-4"
+        required
       />
       <InputField
         label="Email"
@@ -80,6 +81,7 @@ const SignUpForm = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="John Doe"
         className="mb-4"
+        required
       />
       <InputField
         label="Password"
@@ -90,6 +92,7 @@ const SignUpForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="***********"
         className="mb-4"
+        required
       />
       <InputField
         label="Confirm password"
@@ -100,6 +103,7 @@ const SignUpForm = () => {
         onChange={(e) => setPassword2(e.target.value)}
         placeholder="***********"
         className="mb-4"
+        required
       />
       <Button
         label="Signup"
