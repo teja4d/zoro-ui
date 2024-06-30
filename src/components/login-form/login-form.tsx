@@ -62,6 +62,7 @@ const LoginForm = () => {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="John Doe"
         className="mb-4"
+        name="username"
       />
       <InputField
         label="Password"
@@ -71,6 +72,7 @@ const LoginForm = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="***********"
         className="mb-1"
+        name="password"
       />
       <div className="mb-6">
         <a href="/forgot-password" className="text-sm text-indigo-600">
