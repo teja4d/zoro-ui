@@ -6,7 +6,7 @@ import UserDetails from './user-details';
 
 interface UserPageProps {
   username: string;
-  userData: UserDto | null;
+  userData: UserDto | undefined;
 }
 
 function UserPage({ username, userData }: UserPageProps): JSX.Element {
