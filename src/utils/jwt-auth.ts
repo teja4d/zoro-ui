@@ -1,5 +1,5 @@
 import * as jwt from 'jose';
-import Cookies from 'js-cookie';
+import * as Cookies from 'js-cookie';
 
 const jwtConfig = {
   secret: new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET),
@@ -28,14 +28,14 @@ export const verifyJWT = async (token: string | undefined): Promise<jwt.JWTVerif
   }
 };
 
-export const getLoggedInUser = async () => {
-  const token = Cookies.get('token');
-  if (token) {
-    const decoded = await verifyJWT(token);
-    return decoded?.payload;
-  }
-  return;
-}
+// export const getLoggedInUser = async () => {
+//   const token = Cookies.get('token');
+//   if (token) {
+//     const decoded = await verifyJWT(token);
+//     return decoded?.payload;
+//   }
+//   return;
+// }
 
 //logut
 export const logout = () => {

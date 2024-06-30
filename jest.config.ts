@@ -19,7 +19,11 @@ const config: Config = {
       {
         tsconfig: 'tsconfig.jest.json',
       },
-    ],
-  }
+    ]
+  },
+  moduleNameMapper:{
+    "^jose": require.resolve("jose")
+  },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
 }
 export default createJestConfig(config)

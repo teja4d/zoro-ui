@@ -7,7 +7,6 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { authenticate } from "../../src/api/auth/auth-api";
 
 jest.mock("next/navigation", () => ({
