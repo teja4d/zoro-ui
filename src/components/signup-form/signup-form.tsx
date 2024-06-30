@@ -11,48 +11,37 @@ import { signJWTAndSetCookie } from "../../utils/jwt-auth";
 import { useRouter } from "next/navigation";
 
 const SignUpForm = () => {
-  const [username, setUsername] = useState<string | undefined>();
-  const [email, setEmail] = useState<string | undefined>();
-  const [password, setPassword] = useState<string | undefined>();
-  const [password2, setPassword2] = useState<string | undefined>();
+  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [password2, setPassword2] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
-    if (!username || !password || !password2) {
-      setError("Please enter all the fields");
-      return;
-    }
-    //valid email
-    if (!email || !email.includes("@")) {
-      setError("Please enter a valid email");
-      return;
-    }
-    if (password !== password2) {
-      setError("Passwords do not match.");
-      return;
-    }
     const signupData: UserRegisterRequest = {
       username,
       email,
       password,
+      password2,
     };
     setLoading(true);
     try {
-      const isSignedUp = await registerUser(signupData);
-
-      if (isSignedUp.success) {
+      const result = await registerUser(signupData);
+      if (result && "error" in result) {
+        setError(result.error);
+      }
+      if (result.success) {
         setLoading(false);
         signJWTAndSetCookie(username);
         router.push(`/user/${username}`);
-      } else {
-        setError(isSignedUp.error || "Something went wrong");
-        setLoading(false);
       }
     } catch (error) {
       setError("An unexpected error occurred. Please try again.");
+    }
+    finally {
       setLoading(false);
     }
   };

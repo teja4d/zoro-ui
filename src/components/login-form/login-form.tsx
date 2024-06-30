@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signJWTAndSetCookie } from "../../utils/jwt-auth";
 
-export default function LoginPage() {
+export default function LoginForm() {
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
