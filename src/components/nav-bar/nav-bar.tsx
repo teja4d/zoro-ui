@@ -1,4 +1,5 @@
-import Link from 'next/link';
+import Link from "next/link";
+import NavLink from "./nav-link";
 
 function Navbar() {
   return (
@@ -13,18 +14,8 @@ function Navbar() {
             </div>
             <div className="">
               <div className="flex">
-                <Link
-                  href="/main"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/about"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  About
-                </Link>
+                <NavLink href="/main" label="Home" />
+                <NavLink href="/about" label="About" />
               </div>
             </div>
           </div>
