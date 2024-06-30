@@ -10,7 +10,7 @@ interface UserProps {
 
 const User: FC<UserProps> = () => (
   <div>
-    <UserPage username="" userData={undefined} />
+    <UserPage username="" userData={null} />
   </div>
 );
 
