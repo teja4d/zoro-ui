@@ -1,10 +1,6 @@
-import { redirect } from "next/navigation";
-import { JwtPayload } from "jsonwebtoken";
 import { getUserDetails } from "../../../api/users/user-api";
 import UserPage from "../../../components/user-page/user-page";
-import { cookies } from "next/headers";
 import { Metadata } from "next";
-import { verifyJWT } from "../../../utils/jwt-auth";
 
 interface UserPageProps {
   params: {

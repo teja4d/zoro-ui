@@ -6,6 +6,7 @@ import Button from "../../components/elements/button/button";
 import Banner from "../../components/elements/banner/banner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signJWTAndSetCookie } from "../../utils/jwt-auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function LoginPage() {
         setError(result.error);
       }
       if (result.success) {
+        signJWTAndSetCookie(username);
         router.push(`/user/${username}`);
       }
     } catch (err) {
