@@ -35,4 +35,10 @@ describe('LoginForm', () => {
     render(<LoginForm />);
     expect(screen.getByText('Invalid credentials')).toBeInTheDocument();
   });
+
+  test('renders forget password link', () => {
+    render(<LoginForm />);
+    const forgetPasswordLink = screen.getByRole('link', { name: /forgot password?/i });
+    expect(forgetPasswordLink).toBeInTheDocument();
+  });
 });

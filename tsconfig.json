@@ -34,7 +34,7 @@
     "cypress/e2e/signup-page.cy.js",
     "__tests__/**/*.ts",
     "__tests__/**/*.tsx",
-     "__tests__/components/signup-form.test.jsx", "src/components/login-form/__tests__/login-form.test.jsx", "__tests__/elements/input-filed.test.jsx", "cypress/support/index.js", "src/components/login-form/__tests__/login-button.test.jsx", "src/components/signup-form/__tests__/signup-button.test.jsx"  ],
+     "__tests__/components/signup-form.test.jsx", "src/components/login-form/__tests__/login-form.test.jsx", "__tests__/elements/input-filed.test.jsx", "cypress/support/index.js", "src/components/login-form/__tests__/login-button.test.jsx", "src/components/signup-form/__tests__/signup-button.test.jsx", "src/components/nav-bar/__tests__/nav-bar.test.jsx"  ],
   "exclude": [
     "node_modules"
   ]
