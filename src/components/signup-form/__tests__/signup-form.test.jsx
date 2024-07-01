@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import SignUpForm from '../signup-form'
+
 describe('SignupForm', () => {
   test('renders Signup form', () => {
     render(<SignUpForm />);
@@ -18,19 +19,19 @@ describe('SignupForm', () => {
   });
 
   test('renders Signup form with email input', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const passwordInputElement = screen.getByTestId('emailname');
     expect(passwordInputElement).toBeInTheDocument();
   });
 
   test('renders Signup form with confirm password input', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const passwordInputElement = screen.getByTestId('password2');
     expect(passwordInputElement).toBeInTheDocument();
   });
 
   test('renders Signup form with submit button', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const submitButtonElement = screen.getByRole('button');
     expect(submitButtonElement).toBeInTheDocument();
   });
@@ -43,7 +44,7 @@ describe('SignupForm', () => {
         jest.fn(),
         false,
       ]);
-    render(<SignupForm />);
+    render(<SignUpForm />);
     expect(screen.getByText('Please eneter all details')).toBeInTheDocument();
   });
 });
