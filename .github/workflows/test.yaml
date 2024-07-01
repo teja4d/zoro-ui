@@ -25,8 +25,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Install dependencies
+      - name: Install dependencies 
         run: npm install
+
+      - name: Install React 19.0.0 for jest
+        run: npm install react@canary react-dom@canary
 
       - name: Run unit tests
         env:
