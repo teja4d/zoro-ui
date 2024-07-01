@@ -38,7 +38,7 @@ describe('LoginForm', () => {
 
   test('renders forget password link', () => {
     render(<LoginForm />);
-    const forgetPasswordLink = screen.getByRole('link', { name: /forgot password?/i });
+    const forgetPasswordLink = screen.getByRole('link', { name: /forgot password/i });
     expect(forgetPasswordLink).toBeInTheDocument();
   });
 });
