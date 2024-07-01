@@ -26,10 +26,10 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
       - name: Install dependencies 
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Install React 19.0.0 for jest
-        run: npm install react@canary react-dom@canary
+        run: npm install react@canary react-dom@canary --legacy-peer-deps
 
       - name: Run unit tests
         env:
