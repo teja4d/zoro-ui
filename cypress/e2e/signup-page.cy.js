@@ -17,7 +17,12 @@ describe('SignupPage', () => {
     cy.get('button[type="submit"]').click();
   });
 
-  it('submit button is disabled if username or password is empty', () => {
+  it('submit button is disabled during form submit', () => {
+    cy.get('input[id="username"]').type('john doe');
+    cy.get('input[id="emailname"]').type('test@example.com');
+    cy.get('input[id="password"]').type('password123');
+    cy.get('input[id="password2"]').type('password123');
+    cy.get('button[type="submit"]').click();
     //button should be disabled
     cy.get('button[type="submit"]').should('be.disabled');
   });
