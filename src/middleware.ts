@@ -15,13 +15,13 @@ import { verifyJWT } from './utils/jwt-auth';
     const decoded = await verifyJWT(token?.value);
 
     // Check if token or decoded payload is missing or invalid
-    if (!token || !decoded?.payload.username) {
+    if (!token || !decoded?.username) {
       return NextResponse.redirect(new URL('/login', request.url).toString());
     }
 
     // Check if the requested pathname matches /user/:username
     const match = pathname.match(/^\/user\/([^\/]+)$/);
-    if (!match || match[1] !== decoded.payload.username) {
+    if (!match || match[1] !== decoded.username) {
       return NextResponse.redirect(new URL('/login', request.url).toString());
     }
 

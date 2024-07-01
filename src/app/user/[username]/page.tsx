@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { getUserDetails } from '../../../api/users/user-api';
+import { getUserDetails } from '../../../actions/users/user-actions';
 import UserPage from '../../../components/user-page/user-page';
 
 interface UserPageProps {

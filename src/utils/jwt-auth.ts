@@ -6,25 +6,27 @@ const jwtConfig = {
 };
 
 const signJWTAndSetCookie = async (username: string) => {
-  const token = await new jwt.SignJWT({ username, role: 'admin'})
+  const token = await new jwt.SignJWT({ username, role: 'admin' })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setIssuer('zoro-uk')
     .setAudience('zoro-uk')
     .setExpirationTime('1h')
     .sign(jwtConfig.secret);
-  Cookies.set('token', token);
   return token;
+  Cookies.set('token', token, { expires: 1 });
+  console.log('token', token);
 };
 
 const verifyJWT = async (
   token: string | undefined,
-): Promise<jwt.JWTVerifyResult<jwt.JWTPayload> | null> => {
+): Promise<jwt.JWTPayload| null> => {
   if (!token) return null;
   try {
-    const decoded = await jwt.jwtVerify(token, jwtConfig.secret);
-    return decoded;
+    const {payload} = await jwt.jwtVerify(token, jwtConfig.secret);
+    return payload;
   } catch (err) {
+    console.error(err);
     return null;
   }
 };

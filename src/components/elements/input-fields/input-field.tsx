@@ -18,7 +18,7 @@ function InputField({
   name,
   type,
   id,
-  value = '',
+  value ,
   onChange = () => {},
   placeholder = '',
   className = '',

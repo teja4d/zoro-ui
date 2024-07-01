@@ -1,55 +1,29 @@
 'use client';
-
-import { FormEvent, useState } from 'react';
+import { useFormState } from 'react-dom';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
-import { authenticate } from '../../api/auth/auth-api';
+import { authenticate } from '../../actions/auth/auth-actions';
+
 import InputField from '../elements/input-fields/input-field';
-import Button from '../elements/button/button';
 import Banner from '../elements/banner/banner';
-import { signJWTAndSetCookie } from '../../utils/jwt-auth';
+import LoginButton from './login-button';
 
 export default function LoginForm() {
-  const router = useRouter();
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    try {
-      const result = await authenticate({ username, password });
-      if (result && 'error' in result) {
-        setError(result.error);
-      }
-      if (result.success) {
-        signJWTAndSetCookie(username);
-        router.push(`/user/${username}`);
-      }
-    } catch (err) {
-      setError('An unexpected error occurred.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [formState, formAction] = useFormState(authenticate, undefined);
 
   return (
     <div className="mx-auto">
       <div className="h-10 mb-2">
-      {error && (
-        <Banner
-          message={error}
-          showBanner
-          setShowBanner={() => setError(null)}
-        />
-      )}
+        {formState && formState.error && (
+          <Banner
+            message={formState.error}
+            showBanner={true}
+            setShowBanner={() => {}}
+          />
+        )}
       </div>
       <form
-        onSubmit={handleSubmit}
+        action={formAction}
         className=""
         role="form"
         data-testid="login-form"
@@ -62,8 +36,6 @@ export default function LoginForm() {
           placeholder="John Doe"
           className="mb-4"
           required
-          onChange={(e) => setUsername(e.target.value)}
-          value={username}
         />
         <InputField
           label="Password"
@@ -73,25 +45,25 @@ export default function LoginForm() {
           placeholder="***********"
           className="mb-1"
           required
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
         />
         <div className="mb-6">
-          <Link href="/forgot-password" className="text-sm text-indigo-600">
+          <Link
+            data-testid="forgot-password"
+            href="/forgot-password"
+            className="text-sm text-indigo-600"
+          >
             Forgot password?
           </Link>
         </div>
-        <Button
-          label="Login"
-          type="submit"
-          isLoading={isLoading}
-          isDisabled={username === '' || password === ''}
-        />
+        <LoginButton />
         <hr className="my-4 border-gray-200" />
         <div className="">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <Link href="/signup" className="text-indigo-600 hover:underline">
+            {"Don't have an account?"}
+            <Link
+              href="/signup"
+              className="text-indigo-600 hover:underline"
+            >
               Signup
             </Link>
           </p>
