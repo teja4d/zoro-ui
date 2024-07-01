@@ -32,7 +32,7 @@ export async function authenticate(
   }
   try {
     const token = await signJWTAndSetCookie(username);
-    cookies().set('token', token, { expires: 1 });
+    cookies().set('token', token);
   } catch (error) {
     console.error('Error handling login form:', error);
     return { success: false, error: 'An unexpected error occurred' };
