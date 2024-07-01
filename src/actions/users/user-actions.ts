@@ -4,8 +4,7 @@ import { cookies } from 'next/headers';
 import {
   ApiErrorResponse,
   UserRegisterRequest,
-  ApiSuccessResponseUserDto,
-  ApiSuccessResponseUserRegisterResponse,
+  ApiSuccessResponseUserDto
 } from '../../api/swagger-gen/data-contracts';
 import { User } from '../../api/swagger-gen/User';
 import { redirect } from 'next/navigation';
