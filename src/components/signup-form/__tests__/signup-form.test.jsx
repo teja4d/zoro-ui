@@ -1,19 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import SignupForm from '../Signup-form';
-
+import SignUpForm from '../signup-form'
 describe('SignupForm', () => {
   test('renders Signup form', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const SignupFormElement = screen.getByTestId('signup-form');
     expect(SignupFormElement).toBeInTheDocument();
   });
   test('renders Signup form with username input', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const userInputElement = screen.getByTestId('username');
     expect(userInputElement).toBeInTheDocument();
   });
   test('renders Signup form with password input', () => {
-    render(<SignupForm />);
+    render(<SignUpForm />);
     const passwordInputElement = screen.getByTestId('password');
     expect(passwordInputElement).toBeInTheDocument();
   });
