@@ -6,7 +6,7 @@ const jwtConfig = {
 };
 
 const signJWTAndSetCookie = async (username: string) => {
-  const token = await new jwt.SignJWT({ username })
+  const token = await new jwt.SignJWT({ username, role: 'admin'})
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setIssuer('zoro-uk')

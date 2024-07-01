@@ -31,14 +31,15 @@ export default function LoginForm() {
         router.push(`/user/${username}`);
       }
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
+      setError('An unexpected error occurred.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="mx-auto mt-8">
+    <div className="mx-auto">
+      <div className="h-10 mb-2">
       {error && (
         <Banner
           message={error}
@@ -46,6 +47,7 @@ export default function LoginForm() {
           setShowBanner={() => setError(null)}
         />
       )}
+      </div>
       <form
         onSubmit={handleSubmit}
         className=""

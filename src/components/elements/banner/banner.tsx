@@ -27,7 +27,7 @@ const Banner: FC<BannerProps> = ({
     <div
       role="banner"
       data-cy="banner"
-      className={`bg-red-400 border-red-500 rounded-md p-2 mb-4 text-center ${show ? 'visible' : 'hidden'}`}
+      className={`bg-red-400 border-red-500 rounded-md p-2 text-center ${show ? 'visible' : 'hidden'}`}
     >
       <p className="text-sm text-white">{message}</p>
     </div>

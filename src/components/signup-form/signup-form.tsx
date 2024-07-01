@@ -41,14 +41,15 @@ function SignUpForm() {
         router.push(`/user/${username}`);
       }
     } catch (error) {
-      setError('An unexpected error occurred. Please try again.');
+      setError('An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="mx-auto mt-8">
+    <div className="mx-auto">
+      <div className="h-10 mb-2 ">
       {error && (
         <Banner
           setShowBanner={() => setError(null)}
@@ -56,6 +57,7 @@ function SignUpForm() {
           message={error}
         />
       )}
+      </div>
       <form onSubmit={handleSignUp} className="" role="form">
         <InputField
           label="Username"
