@@ -2,6 +2,15 @@ name: ZORO UI
 
 on: [push, pull_request]
 
+#TODO:Enable when the master branch is protected and run tests only for master branch.
+#on:
+  #push:
+    #branches:
+      #- master
+  #pull_request:
+    #branches:
+      #- master
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
