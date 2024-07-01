@@ -17,17 +17,6 @@ describe('LoginPage', () => {
   });
 
   it('submits the form when login button is clicked', () => {
-    cy.on('uncaught:exception', (err, runnable) => {
-      if (err.message.includes('CryptoKey is not defined')) {
-        // Log the error for debugging purposes
-        console.error('Caught CryptoKey is not defined error:', err);
-        
-        // Return false to prevent Cypress from failing the test
-        return false;
-      }
-      // Let other errors fail the test
-      return true;
-    });
     cy.get('input[id="username"]').type('testusers');
     cy.get('input[id="password"]').type('123456');
     cy.get('button[type="submit"]').click();
@@ -35,7 +24,10 @@ describe('LoginPage', () => {
   });
 
   // check banner if username or password is empty
-  it('submit button is disabled if username or password is empty', () => {
+  it('submit button is disabled during form submission', () => {
+    cy.get('input[id="username"]').type('testusers');
+    cy.get('input[id="password"]').type('123456');
+    cy.get('button[type="submit"]').click();
     cy.get('button[type="submit"]').should('be.disabled');
   });
 });
