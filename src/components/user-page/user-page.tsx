@@ -9,7 +9,7 @@ interface UserPageProps {
   userData: UserDto | undefined;
 }
 
-function UserPage({ username, userData }: UserPageProps): JSX.Element {
+async function UserPage({ username, userData }: UserPageProps) {
   // page not found
   if (!userData) {
     return (
