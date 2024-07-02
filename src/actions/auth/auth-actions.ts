@@ -1,14 +1,13 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { Auth } from '../../api/swagger-gen/Auth';
+import { Auth } from '../../lib/swagger-gen/Auth';
 import {
   UserLoginRequest,
   ApiErrorResponse
-} from '../../api/swagger-gen/data-contracts';
+} from '../../lib/swagger-gen/data-contracts';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
 
 const auth = new Auth({
   baseUrl: 'http://localhost:5000',

@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 
-import { UserDto } from '../../api/swagger-gen/data-contracts';
+import { UserDto } from '../../lib/swagger-gen/data-contracts';
 
 import UserDetails from './user-details';
 

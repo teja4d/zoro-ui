@@ -11,7 +11,7 @@
     "eslint": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "test": "jest",
     "cypress:open": "cypress open",
-    "swagger": "rm -rf src/api/swagger-gen/* && curl -k http://localhost:5000/swagger.json  -o src/api/swagger-gen/zoroapi.json && swagger-typescript-api -p src/api/swagger-gen/zoroapi.json -o src/api/swagger-gen/ -t src/api/templates --modular --module-name-first-tag"
+    "swagger": "rm -rf src/lib/swagger-gen/* && curl -k http://localhost:5000/swagger.json  -o src/lib/swagger-gen/zoroapi.json && swagger-typescript-api -p src/lib/swagger-gen/zoroapi.json -o src/lib/swagger-gen/ -t src/api/templates --modular --module-name-first-tag"
   },
   "dependencies": {
     "cookie": "^0.6.0",

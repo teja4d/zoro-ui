@@ -5,8 +5,8 @@ import {
   ApiErrorResponse,
   UserRegisterRequest,
   ApiSuccessResponseUserDto
-} from '../../api/swagger-gen/data-contracts';
-import { User } from '../../api/swagger-gen/User';
+} from '../../lib/swagger-gen/data-contracts';
+import { User } from '../../lib/swagger-gen/User';
 import { redirect } from 'next/navigation';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
 
