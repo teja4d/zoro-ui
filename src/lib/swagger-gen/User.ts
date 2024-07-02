@@ -11,6 +11,7 @@
 
 import {
   ApiErrorResponse,
+  ApiSuccessResponse,
   ApiSuccessResponseUserDto,
   ApiSuccessResponseUserDtoArray,
   ApiSuccessResponseUserRegisterResponse,
@@ -57,6 +58,19 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
     this.request<ApiSuccessResponseUserDtoArray | ApiErrorResponse, void>({
       path: `/user/allUsers/${req}`,
       method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @name DeleteUser
+   * @request POST:/user/delete/{username}
+   */
+  deleteUser = (username: string, params: RequestParams = {}) =>
+    this.request<ApiSuccessResponse | ApiErrorResponse, void>({
+      path: `/user/delete/${username}`,
+      method: "POST",
       format: "json",
       ...params,
     });

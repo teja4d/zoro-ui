@@ -3,12 +3,14 @@ import { cookies } from 'next/headers';
 import {
   ApiErrorResponse,
   UserRegisterRequest,
+  ApiSuccessResponse,
   ApiSuccessResponseUserDto,
   ApiSuccessResponseUserDtoArray
 } from '../../lib/swagger-gen/data-contracts';
 import { redirect } from 'next/navigation';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
 import { apiClient } from '../../lib/config/api-client';
+import { revalidatePath } from 'next/cache';
 
 export const registerUser = async (
   prevState: ApiErrorResponse | undefined,
@@ -72,17 +74,24 @@ export const getUserDetails = async (
   }
 };
 
-export const getAllUsers = async (role: string): Promise<ApiSuccessResponseUserDtoArray | ApiErrorResponse | null> => {
+export const getAllUsers = async (role: string): Promise<ApiSuccessResponseUserDtoArray | ApiErrorResponse> => {
   try {
     if (role !== 'admin') {
-      return { success: false, error: 'Unauthorized' };
+      return { success: false, error: 'Unauthorized', data: null };
     }
     const response = await apiClient.user.allUsers(role);
-    if (response.ok) {
-      return response.data;
-    }
-    return null;
+    return response.data;
   } catch (error: any) {
     return error;
   }
 }
+
+export const deleteUser = async (username: string): Promise<ApiErrorResponse | undefined> => {
+  try {
+    await apiClient.user.deleteUser(username);
+    //TODO: revalidate cache
+    revalidatePath('/admin');
+  } catch (error: any) {
+    return error;
+  }
+};
