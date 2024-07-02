@@ -12,6 +12,7 @@
 import {
   ApiErrorResponse,
   ApiSuccessResponseUserDto,
+  ApiSuccessResponseUserDtoArray,
   ApiSuccessResponseUserRegisterResponse,
   UserRegisterRequest,
 } from "./data-contracts";
@@ -42,6 +43,19 @@ export class User<SecurityDataType = unknown> extends HttpClient<SecurityDataTyp
   userDetails = (username: string, params: RequestParams = {}) =>
     this.request<ApiSuccessResponseUserDto | ApiErrorResponse, void>({
       path: `/user/${username}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @name AllUsers
+   * @request GET:/user/allUsers/{req}
+   */
+  allUsers = (req: string, params: RequestParams = {}) =>
+    this.request<ApiSuccessResponseUserDtoArray | ApiErrorResponse, void>({
+      path: `/user/allUsers/${req}`,
       method: "GET",
       format: "json",
       ...params,

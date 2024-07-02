@@ -12,7 +12,7 @@ interface SectionData {
   items: UserDetailsProps[];
 }
 
-function UserDetails() {
+async function UserDetails() {
   const userData: SectionData[] = userDetails;
   return (
     <div className="max-w-6xl mx-auto">

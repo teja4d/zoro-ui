@@ -12,7 +12,7 @@ import { apiClient } from '../../lib/config/api-client';
 export async function authenticate(
   prevState: ApiErrorResponse | undefined,
   formData: FormData,
-): Promise<ApiErrorResponse > {
+): Promise<ApiErrorResponse> {
   const username = formData.get('username');
   const password = formData.get('password');
   if (!username || !password || typeof username !== 'string'
@@ -31,6 +31,9 @@ export async function authenticate(
   } catch (error) {
     console.error('Error handling login form:', error);
     return { success: false, error: 'An unexpected error occurred' };
+  }
+  if (username === 'admin') {
+    redirect('/admin');
   }
   redirect('/user/' + username);
 }

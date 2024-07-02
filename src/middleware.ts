@@ -19,6 +19,10 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/login', request.url).toString());
     }
 
+    if (path === '/admin' && decoded.username === 'admin') {
+      return NextResponse.next();
+    }
+
     // Check if the requested pathname matches /user/:username
     const match = path.match(/^\/user\/([^\/]+)$/);
     if (!match || match[1] !== decoded.username) {
@@ -32,6 +36,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/login', '/user/:username*'],
+  matcher: ['/', '/login','/admin', '/user/:username*'],
 };
 

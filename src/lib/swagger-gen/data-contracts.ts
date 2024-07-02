@@ -46,6 +46,12 @@ export interface ApiSuccessResponseUserDto {
   [key: string]: any;
 }
 
+export interface ApiSuccessResponseUserDtoArray {
+  success: true;
+  data?: UserDto[];
+  [key: string]: any;
+}
+
 export interface UserLoginResponse {
   token: string;
   message: string;

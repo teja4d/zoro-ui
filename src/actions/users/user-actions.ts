@@ -3,7 +3,8 @@ import { cookies } from 'next/headers';
 import {
   ApiErrorResponse,
   UserRegisterRequest,
-  ApiSuccessResponseUserDto
+  ApiSuccessResponseUserDto,
+  ApiSuccessResponseUserDtoArray
 } from '../../lib/swagger-gen/data-contracts';
 import { redirect } from 'next/navigation';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
@@ -70,3 +71,18 @@ export const getUserDetails = async (
     return error;
   }
 };
+
+export const getAllUsers = async (role: string): Promise<ApiSuccessResponseUserDtoArray | ApiErrorResponse | null> => {
+  try {
+    if (role !== 'admin') {
+      return { success: false, error: 'Unauthorized' };
+    }
+    const response = await apiClient.user.allUsers(role);
+    if (response.ok) {
+      return response.data;
+    }
+    return null;
+  } catch (error: any) {
+    return error;
+  }
+}
