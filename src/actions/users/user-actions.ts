@@ -6,13 +6,9 @@ import {
   UserRegisterRequest,
   ApiSuccessResponseUserDto
 } from '../../lib/swagger-gen/data-contracts';
-import { User } from '../../lib/swagger-gen/User';
 import { redirect } from 'next/navigation';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
-
-const auth = new User({
-  baseUrl: 'http://localhost:5000',
-});
+import { apiClient } from '../../lib/config/api-client';
 
 export const registerUser = async (
   prevState: ApiErrorResponse | undefined,
@@ -41,7 +37,7 @@ export const registerUser = async (
     return { success: false, error: 'Passwords do not match' };
   }
   try {
-    await auth.register(registerData);
+    await apiClient.user.register(registerData);
   } catch (error: any) {
     return error.error as ApiErrorResponse;
   }
@@ -66,7 +62,7 @@ export const getUserDetails = async (
       return { success: false, error: 'Please login to view this page' };
     }
 
-    const response = await auth.userDetails(username);
+    const response = await apiClient.user.userDetails(username);
     if (response.ok) {
       return response.data;
     }

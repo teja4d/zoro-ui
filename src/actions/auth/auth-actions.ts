@@ -1,17 +1,13 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { Auth } from '../../lib/swagger-gen/Auth';
 import {
   UserLoginRequest,
   ApiErrorResponse
 } from '../../lib/swagger-gen/data-contracts';
 import { signJWTAndSetCookie } from '../../utils/jwt-auth';
 import { cookies } from 'next/headers';
-
-const auth = new Auth({
-  baseUrl: 'http://localhost:5000',
-});
+import { apiClient } from '../../lib/config/api-client';
 
 export async function authenticate(
   prevState: ApiErrorResponse | undefined,
@@ -25,7 +21,7 @@ export async function authenticate(
     return { success: false, error: 'Please enter all the fields' };
   }
   try {
-    await auth.login({ username, password } as UserLoginRequest);
+    await apiClient.auth.login({ username, password } as UserLoginRequest);
   } catch (error: any) {
     return error.error as ApiErrorResponse;
   }
